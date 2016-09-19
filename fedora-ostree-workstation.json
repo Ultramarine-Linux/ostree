@@ -1,7 +1,7 @@
 {
-    "ref": "fedora/rawhide/x86_64/workstation",
+    "ref": "fedora/25/x86_64/workstation",
 
-    "repos": ["fedora-rawhide"],
+    "repos": ["fedora-25"],
 
     "selinux": true,
 
