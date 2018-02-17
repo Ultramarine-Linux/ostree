@@ -278,7 +278,7 @@
 		"NetworkManager-adsl",
 		"NetworkManager-bluetooth",
 		"NetworkManager-config-connectivity-fedora",
-		"NetworkManager-openconnect",
+		"NetworkManager-openconnect-gnome",
 		"NetworkManager-openvpn-gnome",
 		"NetworkManager-pptp-gnome",
 		"NetworkManager-team",
