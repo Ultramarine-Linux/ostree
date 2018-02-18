@@ -1,0 +1,7 @@
+[fedora-28-updates]
+name=Fedora 28 $basearch Updates
+#baseurl=http://download.fedoraproject.org/pub/fedora/linux//updates/28/$basearch/os/
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f28&arch=$basearch
+enabled=0
+gpgcheck=0
+metadata_expire=1d

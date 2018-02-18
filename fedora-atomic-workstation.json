@@ -1,6 +1,6 @@
 {
-    "ref": "fedora/rawhide/x86_64/workstation",
-    "repos": ["fedora-rawhide"],
+    "ref": "fedora/28/x86_64/workstation",
+    "repos": ["fedora-28", "fedora-28-updates"],
 
     "include": "fedora-workstation-base.json",
 
