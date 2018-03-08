@@ -1,0 +1,4 @@
+{
+    "ref": "fedora/28/x86_64/testing/workstation",
+    "include": "fedora-atomic-workstation-base.json"
+}

@@ -1,20 +1,5 @@
 {
     "ref": "fedora/28/x86_64/workstation",
     "repos": ["fedora-28", "fedora-28-updates"],
-
-    "include": "fedora-workstation-base.json",
-
-    "automatic_version_prefix": "28",
-    "mutate-os-release": "28",
-
-    "packages": [
-        "flatpak",
-        "atomic",
-        "buildah",
-        "git-core",
-        "rpm-ostree",
-        "podman",
-        "skopeo",
-        "docker"
-    ]
+    "include": "fedora-atomic-workstation-base.json"
 }
