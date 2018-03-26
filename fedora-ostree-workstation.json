@@ -1,5 +1,5 @@
 {
     "ref": "fedora/27/x86_64/workstation",
     "include": "fedora-ostree-workstation-base.json",
-    "repos": ["fedora-27", "fedora-27-updates"],
+    "repos": ["fedora-27", "fedora-27-updates"]
 }
