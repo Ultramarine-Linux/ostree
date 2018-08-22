@@ -1,6 +1,6 @@
 {
     "ref": "fedora/29/${basearch}/workstation",
-    "repos": ["fedora-rawhide"],
+    "repos": ["fedora-29"],
 
     "include": "gnome-desktop-pkgs.json",
 

@@ -1,7 +1,7 @@
 [fedora-29]
 name=Fedora 29 $basearch
-#baseurl=http://download.fedoraproject.org/pub/fedora/linux//development/rawhide/$basearch/os/
-mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=29&arch=$basearch
+baseurl=http://download.fedoraproject.org/pub/fedora/linux//development/29/Everything/$basearch/os/
+#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=29&arch=$basearch
 enabled=0
 gpgcheck=0
 metadata_expire=1d
