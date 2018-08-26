@@ -1,5 +1,5 @@
 {
-    "ref": "fedora/29/${basearch}/workstation",
+    "ref": "fedora/29/${basearch}/silverblue",
     "repos": ["fedora-29"],
 
     "include": "gnome-desktop-pkgs.json",
