@@ -1,5 +1,6 @@
 {
-    "ref": "fedora/rawhide/${basearch}/kinoite",
+    "ref": "fedora/29/${basearch}/kinoite",
+    "repos": ["fedora-29"],
 
     "include": "kde-desktop-pkgs.json",
 

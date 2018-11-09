@@ -1,5 +1,6 @@
 {
-    "ref": "fedora/rawhide/${basearch}/xfce",
+    "ref": "fedora/29/${basearch}/xfce",
+    "repos": ["fedora-29"],
 
     "include": "xfce-desktop-pkgs.json",
 
