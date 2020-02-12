@@ -66,8 +66,8 @@ packages:
   - gnupg2
   - google-noto-emoji-color-fonts
   - google-noto-sans-cjk-ttc-fonts
-  - google-noto-sans-sinhala-fonts
-  - google-noto-serif-cjk-ttc-fonts
+  - google-noto-sans-gurmukhi-fonts
+  - google-noto-sans-sinhala-vf-fonts
   - gstreamer1-plugins-bad-free
   - gstreamer1-plugins-good
   - gutenprint
@@ -123,7 +123,6 @@ packages:
   - lohit-bengali-fonts
   - lohit-devanagari-fonts
   - lohit-gujarati-fonts
-  - lohit-gurmukhi-fonts
   - lohit-kannada-fonts
   - lohit-odia-fonts
   - lohit-tamil-fonts
@@ -210,6 +209,7 @@ packages:
   - which
   - wireless-tools
   - words
+  - xorg-x11-drv-armada
   - xorg-x11-drv-ati
   - xorg-x11-drv-evdev
   - xorg-x11-drv-fbdev
