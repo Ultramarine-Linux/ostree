@@ -9,6 +9,9 @@ packages:
   # Portals for Flatpak
   - xdg-desktop-portal-kde
 
+exclude-packages:
+  - python3-unbound
+
 repos:
   - fedora-32
   - fedora-32-updates
