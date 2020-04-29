@@ -8,3 +8,4 @@ packages:
 
 repos:
   - fedora-32
+  - fedora-32-updates
