@@ -1,0 +1,6 @@
+[fedora-33-updates]
+name=Fedora 33 $basearch Updates
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f33&arch=$basearch
+enabled=0
+gpgcheck=1
+metadata_expire=1d 
