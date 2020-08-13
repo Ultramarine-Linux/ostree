@@ -1,6 +1,6 @@
 [fedora-33]
 name=Fedora 33 $basearch
-mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=33&arch=$basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=fedora-33&arch=$basearch
 enabled=0
 gpgcheck=1
 metadata_expire=1d
