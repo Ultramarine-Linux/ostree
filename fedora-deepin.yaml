@@ -8,3 +8,4 @@ packages:
 
 repos:
   - fedora-33
+  - fedora-33-updates

@@ -9,3 +9,4 @@ packages:
   - xdg-desktop-portal-gtk
 repos:
   - fedora-33
+  - fedora-33-updates
