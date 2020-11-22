@@ -207,6 +207,7 @@ desktop_blacklist:
     - kwebkitpart
     - pinentry-qt
     - plasma-desktop-doc
+    - plasma-user-manager
     - plasma-nm-l2tp
     - plasma-nm-openconnect
     - plasma-nm-openswan
