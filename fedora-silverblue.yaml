@@ -1,5 +1,5 @@
 include: gnome-desktop-pkgs.yaml
-ref: fedora/rawhide/${basearch}/silverblue
+ref: fedora/34/${basearch}/silverblue
 rojig:
   name: fedora-silverblue
   summary: "Fedora Silverblue base image"
@@ -16,4 +16,4 @@ packages:
   - evince-thumbnailer
 
 repos:
-  - fedora-rawhide
+  - fedora-34

@@ -1,5 +1,5 @@
 include: mate-desktop-pkgs.yaml
-ref: fedora/rawhide/${basearch}/mate
+ref: fedora/34/${basearch}/mate
 rojig:
   name: fedora-mate
   summary: "Fedora Mate base image"
@@ -13,4 +13,4 @@ exclude-packages:
   - python3-unbound
 
 repos:
-  - fedora-rawhide
+  - fedora-34
