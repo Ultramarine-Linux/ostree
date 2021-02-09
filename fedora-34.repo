@@ -1,6 +1,6 @@
 [fedora-f34]
 name=Fedora f34 $basearch
-mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=f34&arch=$basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=fedora-34&arch=$basearch
 enabled=0
 gpgcheck=0
 metadata_expire=1d
