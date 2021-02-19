@@ -1,5 +1,5 @@
 include: fedora-common-ostree.yaml
-ref: fedora/rawhide/${basearch}/base
+ref: fedora/34/${basearch}/base
 rojig:
   name: fedora-base
   summary: "Fedora base image for alternative DE"
@@ -12,4 +12,4 @@ packages:
   - xdg-desktop-portal-gtk
 
 repos:
-  - fedora-rawhide
+  - fedora-34
