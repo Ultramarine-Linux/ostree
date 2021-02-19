@@ -10,3 +10,4 @@ packages:
 
 repos:
   - fedora-34
+  - fedora-34-updates
