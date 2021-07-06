@@ -36,6 +36,7 @@ packages:
   - cups-filters
   - curl
   - cyrus-sasl-plain
+  - default-editor
   - dejavu-sans-fonts
   - dejavu-sans-mono-fonts
   - dejavu-serif-fonts
@@ -136,8 +137,6 @@ packages:
   - mlocate
   - mpage
   - mtr
-  - nano
-  - nano-default-editor
   - nfs-utils
   - nss-altfiles
   - nss-mdns
