@@ -1,4 +1,4 @@
-ref: fedora/rawhide/${basearch}/ostree-base
+ref: ultramarine/36/${basearch}/ostree-base
 
 automatic_version_prefix: "36"
 mutate-os-release: "36"
@@ -28,10 +28,11 @@ packages:
   - elfutils-libelf-devel
   # Contains default ostree remote config to be used on client's
   # system for fetching ostree update
-  - fedora-repos-ostree
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
-  - fedora-repos-archive
+  - fedora-repos
+  - ultramarine-repos
+  - ultramarine-repos-common
 
 selinux: true
 documentation: true
@@ -92,7 +93,5 @@ packages-x86_64:
 # Make sure the following are not pulled in when Recommended by other packages
 exclude-packages:
   - PackageKit
-  # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
-  - gstreamer1-plugin-openh264
-  - mozilla-openh264
-  - openh264
+  - generic-release
+  - fedora-release

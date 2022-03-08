@@ -44,10 +44,7 @@ packages:
   - e2fsprogs
   - ethtool
   - exfatprogs
-  - fedora-bookmarks
-  - fedora-chromium-config
-  - fedora-repos-modular
-  - fedora-workstation-backgrounds
+  - ultramarine-backgrounds-basic
   - file
   - filesystem
   - firefox

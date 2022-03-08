@@ -1,0 +1,11 @@
+[ultramarine]
+name=Ultramarine Linux
+baseurl=https://lapis.ultramarine-linux.org/pub/ultramarine/36/Everything/$basearch/os/
+type=rpm
+skip_if_unavailable=True
+gpgcheck=0
+gpgkey=https://repos.ultramarine-linux.org/results/uml.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+priority=50

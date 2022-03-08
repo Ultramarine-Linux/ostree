@@ -14,23 +14,21 @@ packages:
   - at-spi2-atk
   - at-spi2-core
   - avahi
-  - chrome-gnome-shell
   - dconf
   - fprintd-pam
-  - gdm
+  - lightdm
   - glib-networking
   - gnome-backgrounds
+  - ultramarine-backgrounds
+  - ultramarine-backgrounds-basic
+  - fluent-icon-theme
+  - fluent-theme
   - gnome-bluetooth
-  - gnome-classic-session
   - gnome-color-manager
   - gnome-control-center
   - gnome-disk-utility
-  - gnome-initial-setup
   - gnome-remote-desktop
-  - gnome-session-wayland-session
-  - gnome-session-xsession
   - gnome-settings-daemon
-  - gnome-shell
   - gnome-software
   - gnome-system-monitor
   - gnome-terminal
@@ -56,6 +54,10 @@ packages:
   - orca
   - polkit
   - rygel
+  - budgie-desktop
+  - budgie-desktop-view
+  - budgie-extras
+  - budgie-extras-daemon
   - tracker
   - tracker-miners
   - xdg-desktop-portal
@@ -63,3 +65,6 @@ packages:
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   - yelp
+exclude-packages:
+  - gdm
+  - gnome-session

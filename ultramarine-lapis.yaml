@@ -1,8 +1,8 @@
-include: pantheon-desktop-pkgs.yaml
-ref: ultramarine/36/${basearch}/pantheon
+include: budgie-desktop-pkgs.yaml
+ref: ultramarine/36/${basearch}/lapis
 rojig:
-  name: ultramarine-pantheon
-  summary: "Ultramarine Pantheon base image"
+  name: ultramarine-lapis
+  summary: "Ultramarine Lapis base image"
   license: MIT
 packages:
   # Generic release package for desktop variants
@@ -14,3 +14,4 @@ repos:
   - fedora
   - fedora-updates
   - ultramarine
+  - ultramarine-updates

@@ -1,13 +1,13 @@
 include: fedora-common-ostree.yaml
-ref: fedora/rawhide/${basearch}/base
+ref: ultramarine/36/${basearch}/base
 rojig:
   name: fedora-base
   summary: "Fedora base image for alternative DE"
   license: MIT
 packages:
   # Generic release package for desktop variants
-  - fedora-release
-  - fedora-release-ostree-desktop
+  - ultramarine-release
+  - ultramarine-release-basic
   # XWayland support
   - xorg-x11-server-Xwayland
   # Portals for Flatpak
@@ -16,3 +16,4 @@ packages:
 
 repos:
   - fedora-rawhide
+  - ultramarine
