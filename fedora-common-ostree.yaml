@@ -34,7 +34,7 @@ packages:
   - ultramarine-repos
   - ultramarine-repos-common
 
-selinux: true
+selinux: false
 documentation: true
 boot-location: modules
 etc-group-members:
