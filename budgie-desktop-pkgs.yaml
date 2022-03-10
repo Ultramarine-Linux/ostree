@@ -67,4 +67,3 @@ packages:
   - yelp
 exclude-packages:
   - gdm
-  - gnome-session
