@@ -17,6 +17,8 @@ packages:
   - dconf
   - fprintd-pam
   - lightdm
+  - lightdm-gtk
+  - lightdm-gtk-greeter-settings
   - glib-networking
   - gnome-backgrounds
   - ultramarine-backgrounds
