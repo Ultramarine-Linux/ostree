@@ -28,6 +28,10 @@ packages:
   - fedora-repos
   - ultramarine-repos
   - ultramarine-repos-common
+  - rpmfusion-free-release
+  - rpmfusion-free-release-tainted
+  - rpmfusion-nonfree-release
+  - rpmfusion-nonfree-release-tainted
   # Extra packages for pure UX
   - htop
   - neofetch
