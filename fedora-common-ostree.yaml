@@ -20,12 +20,6 @@ packages:
   # HFS filesystem tools for Apple hardware
   # See https://github.com/projectatomic/rpm-ostree/issues/1380
   - hfsplus-tools
-  # Bundle the minimal -devel packages needed to build a kernel.
-  # This is needed because we can't rely on layering to install these
-  # due to version conflicts with the base image.
-  - glibc-devel
-  - kernel-devel
-  - elfutils-libelf-devel
   # Contains default ostree remote config to be used on client's
   # system for fetching ostree update
   # the archive repo for more reliable package layering
@@ -40,8 +34,6 @@ boot-location: modules
 etc-group-members:
   - wheel
 tmp-is-dir: true
-
-postprocess-script: post.sh
 
 ignore-removed-users:
   - root
@@ -93,5 +85,25 @@ packages-x86_64:
 # Make sure the following are not pulled in when Recommended by other packages
 exclude-packages:
   - PackageKit
-  - generic-release
-  - fedora-release
+  # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
+
+
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+
+    # Work around https://bugzilla.redhat.com/show_bug.cgi?id=1265295
+    # From https://github.com/coreos/fedora-coreos-config/blob/testing-devel/overlay.d/05core/usr/lib/systemd/journald.conf.d/10-coreos-persistent.conf
+    install -dm0755 /usr/lib/systemd/journald.conf.d/
+    echo -e "[Journal]\nStorage=persistent" > /usr/lib/systemd/journald.conf.d/10-persistent.conf
+
+    # See: https://src.fedoraproject.org/rpms/glibc/pull-request/4
+    # Basically that program handles deleting old shared library directories
+    # mid-transaction, which never applies to rpm-ostree. This is structured as a
+    # loop/glob to avoid hardcoding (or trying to match) the architecture.
+    for x in /usr/sbin/glibc_post_upgrade.*; do
+        if test -f ${x}; then
+            ln -srf /usr/bin/true ${x}
+        fi
+    done
