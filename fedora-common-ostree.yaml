@@ -117,3 +117,4 @@ postprocess:
             ln -srf /usr/bin/true ${x}
         fi
     done
+  - flatpak --no-filter flathub
