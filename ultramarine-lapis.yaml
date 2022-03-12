@@ -15,3 +15,8 @@ repos:
   - fedora-updates
   - ultramarine
   - ultramarine-updates
+  - rpmfusion-free
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree
+  - rpmfusion-nonfree-updates
+  - rpmfusion-nonfree-tainted

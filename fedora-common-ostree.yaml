@@ -2,6 +2,7 @@ ref: ultramarine/36/${basearch}/ostree-base
 
 automatic_version_prefix: "36"
 mutate-os-release: "36"
+releasever: "36"
 
 include: fedora-common-ostree-pkgs.yaml
 
@@ -27,6 +28,11 @@ packages:
   - fedora-repos
   - ultramarine-repos
   - ultramarine-repos-common
+  # Extra packages for pure UX
+  - htop
+  - neofetch
+  - ncdu
+  - nouveau-firmware
 
 selinux: true
 documentation: true
