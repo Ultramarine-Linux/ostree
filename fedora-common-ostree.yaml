@@ -117,4 +117,4 @@ postprocess:
             ln -srf /usr/bin/true ${x}
         fi
     done
-  - flatpak --no-filter flathub
+  - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
