@@ -37,6 +37,7 @@ packages:
   - neofetch
   - ncdu
   - nouveau-firmware
+  - ultramarine-shell-config
 
 selinux: true
 documentation: true

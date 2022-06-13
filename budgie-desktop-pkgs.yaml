@@ -67,5 +67,6 @@ packages:
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   - yelp
+  - ultramarine-flagship-filesystem
 exclude-packages:
   - gdm
