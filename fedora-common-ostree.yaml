@@ -32,6 +32,8 @@ packages:
   - rpmfusion-free-release-tainted
   - rpmfusion-nonfree-release
   - rpmfusion-nonfree-release-tainted
+  - ultramarine-logos
+  - ultramarine-logos-classic
   # Extra packages for pure UX
   - htop
   - neofetch

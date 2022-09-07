@@ -27,7 +27,6 @@ packages:
   - fluent-theme
   - gnome-bluetooth
   - gnome-color-manager
-  - gnome-control-center
   - gnome-disk-utility
   - gnome-remote-desktop
   - gnome-settings-daemon
