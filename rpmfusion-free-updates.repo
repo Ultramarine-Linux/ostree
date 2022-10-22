@@ -1,9 +1,0 @@
-[rpmfusion-free-updates]
-name=RPM Fusion for Fedora 36 - Free - Updates
-#baseurl=http://download1.rpmfusion.org/free/fedora/updates/36/$basearch/
-metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-36&arch=$basearch
-enabled=1
-enabled_metadata=1
-type=rpm-md
-gpgcheck=0
-repo_gpgcheck=0

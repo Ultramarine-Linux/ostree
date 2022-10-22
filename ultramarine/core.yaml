@@ -1,0 +1,19 @@
+ref: ultramarine/37/${basearch}/lapis
+releasever: "37"
+
+include:
+  - common/graphical.yaml
+  - common/common.yaml
+
+repos:
+  - ultramarine
+  - terra
+  - rpmfusion-free
+  - rpmfusion-nonfree
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree-updates
+  - fedora
+  - fedora-updates
+
+packages:
+  - anda
