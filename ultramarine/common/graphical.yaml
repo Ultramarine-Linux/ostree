@@ -1,8 +1,6 @@
 groups:
   - id: guest-desktop-agents
   - id: flagship-product
-    blacklist:
-      - mlocate
   - id: fonts
     optional: false
   - id: base-x
