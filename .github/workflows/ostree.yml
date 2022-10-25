@@ -21,20 +21,12 @@ jobs:
         - ostree_repo:/var/ostree
 
     steps:
-      - name: Package cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            cache/
-          key: ${{ runner.os }}-${{ matrix.os }}-ostree
-
-
       - name: Install dependencies
         id: deps
         run: |
           dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/um37.repo
-          sudo dnf install -y rpm-ostree melody ostree just
+          sudo dnf install -y rpm-ostree melody ostree just --enablerepo=updates-testing
 
 
       - name: Checkout
