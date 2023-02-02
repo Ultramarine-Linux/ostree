@@ -23,7 +23,7 @@ compile: clean-out
 
 compose: prep
   sudo rpm-ostree compose tree --repo={{ostree_repo}} --cachedir={{ostree_cache}} out/0.yaml
-  sudo chown -R $USER repo
-  sudo chown -R $USER cache
+  sudo chown -R $USER {{ostree_repo}}
+  sudo chown -R $USER {{ostree_cache}}
 
 build: prep compile compose
