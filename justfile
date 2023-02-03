@@ -23,7 +23,6 @@ compile: clean-out
 
 compose: prep
   sudo rpm-ostree compose tree --repo={{ostree_repo}} --cachedir={{ostree_cache}} out/0.yaml
-  if [ "{{ostree_repo}}" == "ostree" ]; then sudo chown -R $(whoami) {{ostree_repo}}; fi
-  sudo chown -R $USER {{ ostree_cache }}
+  
 
 build: prep compile compose
