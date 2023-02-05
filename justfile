@@ -5,7 +5,7 @@ ostree_repo := "ostree"
 
 prep:
   [ -d {{ostree_cache}} ] || mkdir -p {{ostree_cache}}
-  ostree init --repo={{ostree_repo}} bare
+  ostree init --repo={{ostree_repo}} --mode=archive
 clean-repo:
   sudo rm -rf {{ostree_repo}}
 
