@@ -2,8 +2,8 @@ name: Build and deploy OSTree image
 
 on:
   push:
-    paths:
-      - "!README.md"
+    paths-ignore:
+      - "README.md"
 
   workflow_dispatch:
   schedule:
