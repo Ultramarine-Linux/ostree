@@ -20,6 +20,11 @@ jobs:
         - ostree_repo:/var/ostree
 
     steps:
+      - name: DNF Cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache/dnf
+          key: ostree
       - name: Install dependencies
         id: deps
         run: |
@@ -35,10 +40,8 @@ jobs:
       - name: OSTree Cache
         uses: actions/cache@v3
         with:
-          path: |
-            /var/cache/compose
-            /var/cache/dnf
-          key: ${{ runner.os }}-${{ matrix.os }}-ostree
+          path: /var/cache/compose
+          key: ostree
 
       - name: Build OSTree
         id: build
@@ -61,4 +64,4 @@ jobs:
           known_hosts: ${{ secrets.REPO_KNOWN_HOSTS }}
 
       - name: Push OSTree commit
-        run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO.IP }}:/var/www/repo.fyralabs.com/ostree
+        run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO_IP }}:/var/www/repo.fyralabs.com/ostree
