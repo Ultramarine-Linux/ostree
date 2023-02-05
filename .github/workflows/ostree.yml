@@ -43,13 +43,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just ostree_cache=/var/cache/compose ostree_repo=ostree build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ostree
-          path: ostree/
+        run: just ostree_cache=/var/cache/compose ostree_repo=/var/ostree build
 
   deploy:
     runs-on: ubuntu-latest
@@ -74,11 +68,6 @@ jobs:
         id: deps-py
         run: pip install ostree-push yq
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: ostree
-
       - name: Import GPG key
         run: |
           echo "${{ secrets.GPG_SIGNING_KEY }}" | gpg --import
@@ -86,8 +75,8 @@ jobs:
 
       - name: Sign OSTree commit
         run: |
-          ostree --repo=ostree gpg-sign ultramarine/37/x86_64/lapis ${{ secrets.GPG_ID }} -v
-          ostree --repo=ostree summary -u
+          ostree --repo=/var/ostree gpg-sign ultramarine/37/x86_64/lapis ${{ secrets.GPG_ID }} -v
+          ostree --repo=/var/ostree summary -u
 
       - name: Import SSH credentials
         uses: shimataro/ssh-key-action@v2.3.1
@@ -96,7 +85,7 @@ jobs:
           known_hosts: ${{ secrets.REPO_KNOWN_HOSTS }}
 
       - name: Push OSTree commit
-        run: ostree-push --repo ostree repo@${{ secrets.REPO.IP }}:/var/www/repo.fyralabs.com/ostree
+        run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO.IP }}:/var/www/repo.fyralabs.com/ostree
       # - name: Upload OSTree commit to subatomic
       #   run: |
       #     subatomic-cli upload \
