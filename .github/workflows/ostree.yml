@@ -68,7 +68,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install dependencies
         id: deps
-        run: pip install ostree-push
+        run: sudo dnf install -y rpm-ostree melody just python3-pip pkg-config wget ostree ostree-devel rpm-ostree git hfsplus-tools flatpak dbus dbus-daemon rpmdevtools make mock selinux-policy python3-pip jq @development-tools gcc cairo-devel python3-devel 'pkgconfig(gobject-introspection-1.0)' 'pkgconfig(cairo-gobject)' 'dnf-command(config-manager)'
+
+      - name: Install python dependencies
+        id: deps-py
+        run: pip install ostree-push yq
+
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
