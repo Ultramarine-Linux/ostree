@@ -4,7 +4,6 @@ on:
   push:
   workflow_dispatch:
 
-
 jobs:
   build:
     strategy:
@@ -26,8 +25,8 @@ jobs:
         run: |
           dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/um37.repo
-          sudo dnf install -y rpm-ostree melody ostree just --enablerepo=updates-testing
-
+          sudo dnf install -y rpm-ostree melody ostree just python3-pip
+          pip install ostree-push
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,21 +38,15 @@ jobs:
             cache/
           key: ${{ runner.os }}-${{ matrix.os }}-ostree
 
-
       - name: Build OSTree
         id: build
-        run: just ostree_cache=/var/cache/compose ostree_repo=/var/ostree build
-
-
-      - name: Export OSTree commit
-        id: export
-        run: ostree export --repo /var/ostree ultramarine/37/x86_64/lapis > output.tar
+        run: just ostree_cache=/var/cache/compose ostree_repo=ostree build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: ostree
-          path: output.tar
+          path: ostree/
 
   deploy:
     runs-on: ubuntu-latest
@@ -70,15 +63,35 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install dependencies
+        id: deps
+        run: pip install ostree-push
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: ostree
 
-      - name: Upload OSTree commit to subatomic
+      - name: Import GPG key
         run: |
-          subatomic-cli upload \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            ostree --branch ultramarine/37/x86_64/lapis output.tar || true
+          echo "${{ secrets.GPG_SIGNING_KEY }}" | gpg --import
+          echo "${{ secrets.GPG_KEY }}" | gpg --import
 
+      - name: Sign OSTree commit
+        run: |
+          ostree --repo=ostree gpg-sign ultramarine/37/x86_64/lapis ${{ secrets.GPG_ID }} -v
+          ostree --repo=ostree summary -u
+
+      - name: Import SSH credentials
+        uses: shimataro/ssh-key-action@v2.3.1
+        with:
+          key: ${{ secrets.REPO_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.REPO_KNOWN_HOSTS }}
+
+      - name: Push OSTree commit
+        run: ostree-push --repo ostree repo@${{ secrets.REPO.IP }}:/var/www/repo.fyralabs.com/ostree
+      # - name: Upload OSTree commit to subatomic
+      #   run: |
+      #     subatomic-cli upload \
+      #       --server https://subatomic.fyralabs.com \
+      #       --token ${{ secrets.SUBATOMIC_TOKEN }} \
+      #       ostree --branch ultramarine/37/x86_64/lapis output.tar || true
