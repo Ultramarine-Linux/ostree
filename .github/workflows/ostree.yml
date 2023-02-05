@@ -26,7 +26,10 @@ jobs:
           dnf install -y dnf-plugins-core
           sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/um37.repo
           sudo dnf install -y rpm-ostree melody ostree just python3-pip pkg-config
-          pip --no-cache-dir ostree-push yq
+
+      - name: Install python dependencies
+        id: deps-py
+        run: pip install ostree-push yq
 
       - name: Checkout
         uses: actions/checkout@v3
