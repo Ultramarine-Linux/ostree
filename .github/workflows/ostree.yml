@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            cache/
+            /var/cache/compose
           key: ${{ runner.os }}-${{ matrix.os }}-ostree
 
       - name: Build OSTree
@@ -51,6 +51,9 @@ jobs:
     needs: build
     container:
       image: ghcr.io/terrapkg/builder:main
+      volumes:
+        - ostree_cache:/var/cache/compose
+        - ostree_repo:/var/ostree
 
 
     # use matrix for each arch
