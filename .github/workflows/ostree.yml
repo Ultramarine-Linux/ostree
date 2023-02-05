@@ -22,6 +22,7 @@ jobs:
     steps:
       - name: DNF Cache
         uses: actions/cache@v3
+        if: always()
         with:
           path: /var/cache/dnf
           key: dnf
@@ -38,6 +39,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: OSTree Cache
+        if: always()
         uses: actions/cache@v3
         with:
           path: /var/cache/compose
