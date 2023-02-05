@@ -13,7 +13,7 @@ jobs:
           # - ARM64
     runs-on: ${{ matrix.os }}
     container:
-      image: registry.fedoraproject.org/fedora:37
+      image: ghcr.io/terrapkg/builder:main
       options: --cap-add=SYS_ADMIN --privileged
       volumes:
         - ostree_cache:/var/cache/compose
@@ -23,8 +23,6 @@ jobs:
       - name: Install dependencies
         id: deps
         run: |
-          dnf install -y dnf-plugins-core
-          sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/um37.repo
           sudo dnf install -y rpm-ostree melody just python3-pip pkg-config wget ostree ostree-devel rpm-ostree git hfsplus-tools flatpak dbus dbus-daemon rpmdevtools make mock selinux-policy python3-pip jq @development-tools gcc cairo-devel python3-devel 'pkgconfig(gobject-introspection-1.0)' 'pkgconfig(cairo-gobject)' 'dnf-command(config-manager)'
 
       - name: Install python dependencies
@@ -39,37 +37,12 @@ jobs:
         with:
           path: |
             /var/cache/compose
+            /var/cache/dnf
           key: ${{ runner.os }}-${{ matrix.os }}-ostree
 
       - name: Build OSTree
         id: build
         run: just ostree_cache=/var/cache/compose ostree_repo=/var/ostree build
-
-  deploy:
-    runs-on: ubuntu-latest
-    # need artifacts from build job
-    needs: build
-    container:
-      image: ghcr.io/terrapkg/builder:main
-      volumes:
-        - ostree_cache:/var/cache/compose
-        - ostree_repo:/var/ostree
-
-
-    # use matrix for each arch
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install dependencies
-        id: deps
-        run: sudo dnf install -y rpm-ostree melody just python3-pip pkg-config wget ostree ostree-devel rpm-ostree git hfsplus-tools flatpak dbus dbus-daemon rpmdevtools make mock selinux-policy python3-pip jq @development-tools gcc cairo-devel python3-devel 'pkgconfig(gobject-introspection-1.0)' 'pkgconfig(cairo-gobject)' 'dnf-command(config-manager)'
-
-      - name: Install python dependencies
-        id: deps-py
-        run: pip install ostree-push yq
 
       - name: Import GPG key
         run: |
@@ -89,9 +62,3 @@ jobs:
 
       - name: Push OSTree commit
         run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO.IP }}:/var/www/repo.fyralabs.com/ostree
-      # - name: Upload OSTree commit to subatomic
-      #   run: |
-      #     subatomic-cli upload \
-      #       --server https://subatomic.fyralabs.com \
-      #       --token ${{ secrets.SUBATOMIC_TOKEN }} \
-      #       ostree --branch ultramarine/37/x86_64/lapis output.tar || true
