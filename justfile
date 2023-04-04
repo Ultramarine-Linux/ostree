@@ -22,7 +22,7 @@ compile: clean-out
 
 
 compose: prep
-  sudo rpm-ostree compose tree --repo={{ostree_repo}} --cachedir={{ostree_cache}} out/0.yaml
+  sudo rpm-ostree compose image --format=registry --cachedir={{ostree_cache}} out/0.yaml ghcr.io/ultramarine-linux/ultramarine-ostree:x86_64-latest
   
 
 build: prep compile compose

@@ -51,25 +51,37 @@ jobs:
           path: /var/cache/compose
           key: ostree
 
+      # Set up OCI login credentials
+      # generate containers-auth.json with podman login --authfile containers-auth.json
+      - name: Set up OCI login credentials
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          auth_file_path: /etc/ostree/auth.json
+
       - name: Build OSTree
         id: build
         run: just ostree_cache=/var/cache/compose ostree_repo=/var/ostree build
 
-      - name: Import GPG key
-        run: |
-          echo "${{ secrets.GPG_SIGNING_KEY }}" | gpg --import
-          echo "${{ secrets.GPG_KEY }}" | gpg --import
+      # We are going to build OSTree images through OCI now
 
-      - name: Sign OSTree commit
-        run: |
-          ostree --repo=/var/ostree gpg-sign ultramarine/37/x86_64/lapis ${{ secrets.GPG_ID }} -v
-          ostree --repo=/var/ostree summary -u
+      # - name: Import GPG key
+      #   run: |
+      #     echo "${{ secrets.GPG_SIGNING_KEY }}" | gpg --import
+      #     echo "${{ secrets.GPG_KEY }}" | gpg --import
 
-      - name: Import SSH credentials
-        uses: shimataro/ssh-key-action@v2.3.1
-        with:
-          key: ${{ secrets.REPO_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.REPO_KNOWN_HOSTS }}
+      # - name: Sign OSTree commit
+      #   run: |
+      #     ostree --repo=/var/ostree gpg-sign ultramarine/37/x86_64/lapis ${{ secrets.GPG_ID }} -v
+      #     ostree --repo=/var/ostree summary -u
 
-      - name: Push OSTree commit
-        run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO_IP }}:/var/www/repo.fyralabs.com/ostree
+      # - name: Import SSH credentials
+      #   uses: shimataro/ssh-key-action@v2.3.1
+      #   with:
+      #     key: ${{ secrets.REPO_PRIVATE_KEY }}
+      #     known_hosts: ${{ secrets.REPO_KNOWN_HOSTS }}
+
+      # - name: Push OSTree commit
+      #   run: ostree-push --repo=/var/ostree repo@${{ secrets.REPO_IP }}:/var/www/repo.fyralabs.com/ostree

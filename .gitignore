@@ -2,3 +2,4 @@
 /ostree
 /cache
 *.tar
+*.auth.json
