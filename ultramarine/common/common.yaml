@@ -17,7 +17,6 @@ check-groups:
   type: file
   filename: group
 default_target: graphical.target
-postprocess-script: post.sh
 ima: true
 groups:
   - id: core
@@ -59,11 +58,12 @@ groups:
   - id: workstation-ostree-support
   - id: guest-agents
   - id: printing
-    # There are some junk packages (printing related CLIs, and a GUI) in the optional packages for this group. 
+    # There are some junk packages (printing related CLIs, and a GUI) in the optional packages for this group.
     blacklist:
       - a2ps
       - enscript
       - system-config-printer
+      - cups-bjnp
 
 packages:
   # Linux
@@ -76,7 +76,7 @@ packages:
   - podman-docker
   - git
   # Boot (TODO: Switch to systemd-boot)
-    #systemd-boot may be a bit tricky -jr
+  #systemd-boot may be a bit tricky -jr
   - bootupd
   - grub2
   - shim
@@ -89,8 +89,6 @@ packages:
   - rpmfusion-nonfree-release
   - plocate
 
-
-
 packages-x86_64:
   - mcelog
   - microcode_ctl
@@ -102,10 +100,8 @@ packages-x86_64:
   - grub2-pc
   - grub2-efi-x64
 
-
 packages-aarch64:
   - bcm283x-firmware
-
 
 exclude-packages:
   - fedora-release
@@ -116,5 +112,27 @@ exclude-packages:
   - budgie-desktop=view
   - grub2-ppc64le
 
+postprocess:
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
 
+    # Work around https://bugzilla.redhat.com/show_bug.cgi?id=1265295
+    # From https://github.com/coreos/fedora-coreos-config/blob/testing-devel/overlay.d/05core/usr/lib/systemd/journald.conf.d/10-coreos-persistent.conf
+    install -dm0755 /usr/lib/systemd/journald.conf.d/
+    echo -e "[Journal]\nStorage=persistent" > /usr/lib/systemd/journald.conf.d/10-persistent.conf
 
+    # See: https://src.fedoraproject.org/rpms/glibc/pull-request/4
+    # Basically that program handles deleting old shared library directories
+    # mid-transaction, which never applies to rpm-ostree. This is structured as a
+    # loop/glob to avoid hardcoding (or trying to match) the architecture.
+    for x in /usr/sbin/glibc_post_upgrade.*; do
+        if test -f ${x}; then
+            ln -srf /usr/bin/true ${x}
+        fi
+    done
+
+    # Remove loader directory causing issues in Anaconda in unified core mode
+    # Will be obsolete once we start using bootupd
+    rm -rf /usr/lib/ostree-boot/loader
+postprocess-script: "postprocess.sh"

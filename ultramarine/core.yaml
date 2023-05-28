@@ -1,5 +1,5 @@
-ref: ultramarine/37/${basearch}/lapis
-releasever: "37"
+ref: ultramarine/38/${basearch}/lapis
+releasever: "38"
 
 include:
   - common/graphical.yaml
@@ -16,4 +16,4 @@ repos:
   - fedora-updates
 
 packages:
-  - anda
+  - distrobox

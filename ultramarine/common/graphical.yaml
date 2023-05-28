@@ -3,6 +3,8 @@ groups:
   - id: flagship-product
   - id: fonts
     optional: false
+    blacklist:
+      - google-noto-sans-cjk-ttc-fonts
   - id: base-x
     # TODO: see hardware.yaml
     blacklist:
@@ -14,7 +16,11 @@ groups:
   - id: multimedia
     blacklist:
       - gstreamer1-plugin-openh264
+      - gimp-heif-plugin
   - id: budgie-desktop
+    blacklist:
+      - evince-nautilus
+      - libproxy-webkitgtk4
 
 packages:
   - glibc-all-langpacks
