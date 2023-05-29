@@ -62,7 +62,7 @@ jobs:
           auth_file_path: /etc/ostree/auth.json
 
       - name: Move credentials to correct path
-        run: sudo mkdir /etc/ostree && sudo cp ~/.docker/config.json /etc/ostree/auth.json
+        run: sudo cp ~/.docker/config.json /etc/ostree/auth.json
 
       - name: Build OSTree
         id: build
