@@ -3,6 +3,10 @@ groups:
   - id: flagship-product
     blacklist:
       - psacct
+      - dnf
+      - dnf-plugins-core
+      - deltarpm
+      - python3-dnf-plugin-system-upgrade
   - id: fonts
     optional: false
     blacklist:
