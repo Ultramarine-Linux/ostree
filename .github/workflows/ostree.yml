@@ -18,10 +18,12 @@ jobs:
           - ubuntu-latest
           # - ARM64
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      packages: write
     container:
       image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
-
     steps:
       - name: DNF Cache
         uses: actions/cache@v3
