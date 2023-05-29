@@ -59,6 +59,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          auth_file_path: /etc/ostree/auth.json
 
       - name: Move credentials to correct path
         run: sudo mkdir /etc/ostree && sudo cp ~/.docker/config.json /etc/ostree/auth.json
