@@ -1,6 +1,8 @@
 groups:
   - id: guest-desktop-agents
   - id: flagship-product
+    blacklist:
+      - psacct
   - id: fonts
     optional: false
     blacklist:
