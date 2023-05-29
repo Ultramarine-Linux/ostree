@@ -109,7 +109,6 @@ exclude-packages:
   - fedora-release-common
   - fedora-release-identity-workstation
   - generic-release
-  - budgie-desktop=view
   - grub2-ppc64le
 
 postprocess:
