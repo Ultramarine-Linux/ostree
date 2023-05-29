@@ -54,7 +54,7 @@ jobs:
       # Set up OCI login credentials
       # generate containers-auth.json with podman login --authfile containers-auth.json
       - name: Set up OCI login credentials
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v1.6
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
