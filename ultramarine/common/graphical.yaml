@@ -7,6 +7,9 @@ groups:
       - dnf-plugins-core
       - deltarpm
       - python3-dnf-plugin-system-upgrade
+      - mcelog
+      - microcode_ctl
+      - thermald
   - id: fonts
     optional: false
     blacklist:
@@ -47,4 +50,4 @@ packages-x86_64:
   - xorg-x11-drv-openchrome
   - xorg-x11-drv-vesa
   - xorg-x11-drv-vmware
-  - virtualbox-guest-additions
+  - thermald

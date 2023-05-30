@@ -47,6 +47,8 @@ groups:
       - microcode_ctl
   - id: cloud-bootloader-tools
     blacklist:
+      - grub2-pc
+      - grub2-tools-efi
       - grub2-efi-aa64
       - grub2-efi-ia32
       - grub2-efi-x64
@@ -54,8 +56,12 @@ groups:
       - s390utils
       - s390utils-base
       - shim-aa64
+      - shim-ia32
+      - shim-x64
   - id: workstation-ostree-support
   - id: guest-agents
+    blacklist:
+      - virtualbox-guest-additions
   - id: printing
     # There are some junk packages (printing related CLIs, and a GUI) in the optional packages for this group.
     blacklist:
@@ -98,6 +104,10 @@ packages-x86_64:
   # - broadcom-wl
   - grub2-pc
   - grub2-efi-x64
+  - grub2-tools-efi
+  - shim-ia32
+  - shim-x64
+  - virtualbox-guest-additions
 
 packages-aarch64:
   - bcm283x-firmware
