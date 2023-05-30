@@ -1,5 +1,7 @@
 groups:
   - id: guest-desktop-agents
+    blacklist:
+      - virtualbox-guest-additions
   - id: flagship-product
     blacklist:
       - psacct
@@ -51,3 +53,4 @@ packages-x86_64:
   - xorg-x11-drv-vesa
   - xorg-x11-drv-vmware
   - thermald
+  - virtualbox-guest-additions
