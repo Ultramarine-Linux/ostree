@@ -15,7 +15,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          # - ARM64
+          - ARM64
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -50,7 +50,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /var/cache/compose
-          key: ostree
+          key: ostree-${{ matrix.os }}
 
       - name: Login Docker
         if: always()
