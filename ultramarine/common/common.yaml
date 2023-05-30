@@ -130,7 +130,8 @@ postprocess:
         fi
     done
 
-    # Remove loader directory causing issues in Anaconda in unified core mode
-    # Will be obsolete once we start using bootupd
-    rm -rf /usr/lib/ostree-boot/loader
+    # Until we have https://github.com/coreos/rpm-ostree/pull/2275
+    mkdir -p /run
+    # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
+    /usr/bin/bootupctl backend generate-update-metadata /
 postprocess-script: "postprocess.sh"
