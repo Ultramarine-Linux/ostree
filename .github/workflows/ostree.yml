@@ -72,7 +72,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just build-registry ostree_cache=/var/cache/compose
+        run: just ostree_cache=/var/cache/compose build-registry
 
       # We are going to build OSTree images through OCI now
 
