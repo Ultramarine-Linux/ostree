@@ -1,0 +1,26 @@
+ref: ultramarine/38/gnome/${basearch}
+releasever: "38"
+
+include:
+  - common/desktop.yaml
+  - common/graphical.yaml
+  - common/common.yaml
+
+repos:
+  - ultramarine
+  - terra
+  - rpmfusion-free
+  - rpmfusion-nonfree
+  - rpmfusion-free-updates
+  - rpmfusion-nonfree-updates
+  - fedora
+  - fedora-updates
+
+groups:
+  - id: gnome-desktop
+    # TODO: Update this
+    blacklist:
+      - evince-nautilus
+      - libproxy-webkitgtk4
+      - PackageKit-command-not-found
+      - PackageKit-gtk3-module

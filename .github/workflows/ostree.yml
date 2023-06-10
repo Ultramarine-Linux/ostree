@@ -16,6 +16,11 @@ jobs:
         os:
           - ubuntu-latest
           - ARM64
+        variant:
+          - flagship
+          - gnome
+          - pantheon
+          - plasma
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -50,7 +55,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /var/cache/compose
-          key: ostree-${{ matrix.os }}
+          key: ostree-${{matrix.variant}}-${{ matrix.os }}
 
       - name: Login Docker
         if: always()
@@ -72,7 +77,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just ostree_cache=/var/cache/compose build-registry
+        run: just ostree_cache=/var/cache/compose build-registry ${{ matrix.variant }}
 
       # We are going to build OSTree images through OCI now
 

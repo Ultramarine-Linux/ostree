@@ -29,12 +29,6 @@ groups:
       - gstreamer1-plugin-openh264
       - gimp-heif-plugin
       - PackageKit-gstreamer-plugin
-  - id: budgie-desktop
-    blacklist:
-      - evince-nautilus
-      - libproxy-webkitgtk4
-      - PackageKit-command-not-found
-      - PackageKit-gtk3-module
 
 packages:
   - glibc-all-langpacks
