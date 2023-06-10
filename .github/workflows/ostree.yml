@@ -17,6 +17,7 @@ jobs:
           - ubuntu-latest
           - ARM64
         variant:
+          - base
           - flagship
           - gnome
           - pantheon
