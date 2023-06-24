@@ -52,13 +52,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: OSTree Cache
-        if: always()
-        uses: actions/cache@v3
-        with:
-          path: /var/cache/compose
-          key: ostree-${{matrix.variant}}-${{ matrix.os }}
-
       - name: Login Docker
         if: always()
         uses: docker/login-action@v1
@@ -79,7 +72,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just ostree_cache=/var/cache/compose build-registry initialize="" ${{ matrix.variant }}
+        run: just build-registry initialize="" ${{ matrix.variant }}
 
       # We are going to build OSTree images through OCI now
 
