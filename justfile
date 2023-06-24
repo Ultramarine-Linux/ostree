@@ -20,7 +20,7 @@ compile variant: (clean-variant variant)
   melody compile ultramarine/{{variant}}.yaml out/{{variant}}
 
 compose variant:
-  sudo rpm-ostree compose image --cachedir={{ostree_cache}} --initialize out/{{variant}}/0.yaml image
+  sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml image
 
 compose-registry variant:
   sudo rpm-ostree compose image --format=registry --cachedir={{ostree_cache}} --authfile={{registry_auth}} {{initialize}} out/{{variant}}/0.yaml ghcr.io/ultramarine-linux/{{variant}}-ostree:38

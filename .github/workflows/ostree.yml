@@ -72,7 +72,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just build-registry initialize="" ${{ matrix.variant }}
+        run: just build-registry initialize="" variant=${{ matrix.variant }}
 
       # We are going to build OSTree images through OCI now
 
