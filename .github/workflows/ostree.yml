@@ -79,7 +79,7 @@ jobs:
 
       - name: Build OSTree
         id: build
-        run: just ostree_cache=/var/cache/compose build-registry ${{ matrix.variant }}
+        run: just ostree_cache=/var/cache/compose build-registry initialize="" ${{ matrix.variant }}
 
       # We are going to build OSTree images through OCI now
 
