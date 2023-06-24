@@ -23,7 +23,7 @@ compose variant:
   sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml image
 
 compose-registry variant:
-  sudo rpm-ostree compose image --format=registry --cachedir={{ostree_cache}} --authfile={{registry_auth}} {{initialize}} out/{{variant}}/0.yaml ghcr.io/ultramarine-linux/{{variant}}-ostree:38
+  sudo rpm-ostree compose image --format=registry --cachedir={{ostree_cache}} --copy-retry-times=20 --authfile={{registry_auth}} {{initialize}} out/{{variant}}/0.yaml ghcr.io/ultramarine-linux/{{variant}}-ostree:38
 
 build variant: prep (compile variant) (compose variant)
 build-registry variant: prep (compile variant) (compose-registry variant)
