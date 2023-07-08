@@ -91,6 +91,7 @@ packages:
   - rpmfusion-free-release
   - rpmfusion-nonfree-release
   - plocate
+  - ostree-grub2
 
 packages-x86_64:
   - mcelog
