@@ -1,4 +1,4 @@
-ref: ultramarine/38/pantheon/${basearch}
+ref: tau/1/home/${basearch}
 releasever: "38"
 
 include:
@@ -6,10 +6,9 @@ include:
   - ../common/graphical.yaml
   - ../common/common.yaml
   - common/release.yaml
-  - common/graphical.yaml
 
 repos:
-  - ultramarine
+  - tau
   - terra
   - rpmfusion-free
   - rpmfusion-nonfree
@@ -18,11 +17,10 @@ repos:
   - fedora
   - fedora-updates
 
-groups:
-  - id: pantheon-desktop
-    # TODO: Update this
-    blacklist:
-      - evince-nautilus
-      - libproxy-webkitgtk4
-      - PackageKit-command-not-found
-      - PackageKit-gtk3-module
+packages:
+  - distrobox
+  - chromium
+  - starship
+  - tau-release-desktop
+  - tau-starship
+  # - catalogue

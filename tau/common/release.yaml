@@ -1,0 +1,8 @@
+packages:
+  - tau-release
+  - tau-repos
+  - tau-repos-ostree
+  - tau-gpg-keys
+  - tau-logos
+  - tau-logos-httpd
+  - tau-plymouth

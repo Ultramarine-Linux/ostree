@@ -18,11 +18,11 @@ jobs:
           - ubuntu-latest
           - ARM64
         variant:
-          - base
-          - flagship
-          - gnome
-          - pantheon
-          - plasma
+          - ultramarine/base
+          - ultramarine/flagship
+          - ultramarine/gnome
+          - ultramarine/pantheon
+          - ultramarine/plasma
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read

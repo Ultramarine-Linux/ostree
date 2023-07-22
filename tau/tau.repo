@@ -1,10 +1,10 @@
-[ultramarine]
-name=Ultramarine Linux
-baseurl=https://repos.fyralabs.com/um$releasever/
+[tau]
+name=tauOS Packages
+baseurl=https://repos.fyralabs.com/tau1/
 type=rpm
 gpgcheck=1
 enable=1
-gpgkey=https://repos.fyralabs.com/um$releasever/key.asc
+gpgkey=https://repos.fyralabs.com/tau1/key.asc
 repo_gpgcheck=0
 enabled_metadata=1
 

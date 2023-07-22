@@ -2,9 +2,11 @@ ref: ultramarine/38/plasma/${basearch}
 releasever: "38"
 
 include:
-  - common/desktop.yaml
+  - ../common/desktop.yaml
+  - ../common/graphical.yaml
+  - ../common/common.yaml
+  - common/release.yaml
   - common/graphical.yaml
-  - common/common.yaml
 
 repos:
   - ultramarine
