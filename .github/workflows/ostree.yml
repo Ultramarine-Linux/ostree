@@ -20,6 +20,10 @@ jobs:
       image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
+      # Thanks GHA for not having a replace expression!
+      - name: Get variant safe-name
+        run: echo "VARIANT_SAFE_NAME=$(echo "${{inputs.variant}}" | tr / -)" >> $GITHUB_ENV
+
       - name: DNF Cache
         uses: actions/cache@v3
         with:
@@ -48,24 +52,28 @@ jobs:
       - name: Upload OCI archive as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ inputs.variant }}-${{ matrix.arch }}-oci
+          name: ${{ env.VARIANT_SAFE_NAME }}-${{ matrix.arch }}-oci
           path: images/*
   publish:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # Thanks GHA for not having a replace expression!
+      - name: Get variant safe-name
+        run: echo "VARIANT_SAFE_NAME=$(echo "${{inputs.variant}}" | tr / -)" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y buildah
 
       - name: Download OCI archive (x86_64)
         uses: actions/download-artifact@v3
         with:
-          name: ${{ inputs.variant }}-x86_64-oci
+          name: ${{ env.VARIANT_SAFE_NAME }}-x86_64-oci
 
       - name: Download OCI archive (aarch64)
         uses: actions/download-artifact@v3
         with:
-          name: ${{ inputs.variant }}-aarch64-oci
+          name: ${{ env.VARIANT_SAFE_NAME }}-aarch64-oci
 
       - name: Test
         run: ls
