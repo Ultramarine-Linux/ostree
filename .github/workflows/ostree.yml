@@ -1,13 +1,11 @@
-name: Build and deploy OSTree image
+name: OSTree build
 
 on:
-  push:
-    paths-ignore:
-      - "README.md"
-  workflow_dispatch:
-  schedule:
-    # every sunday at 00:00
-    - cron: "0 0 * * 0"
+  workflow_call:
+    inputs:
+      variant:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -17,48 +15,64 @@ jobs:
         arch:
           - x86_64
           - aarch64
-        variant:
-          - ultramarine/base
-          - ultramarine/flagship
-          - ultramarine/gnome
-          - ultramarine/pantheon
-          - ultramarine/plasma
-          - tau/home
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
-    permissions:
-      contents: read
-      packages: write
     container:
       image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
-      volumes:
-        - ostree_cache:/var/cache/compose
     steps:
       - name: DNF Cache
         uses: actions/cache@v3
-        if: always()
         with:
           path: /var/cache/dnf
-          key: dnf
+          key: dnf-${{ inputs.variant }}-${{ matrix.arch }}
+
+      - name: OSTree Cache
+        uses: actions/cache@v3
+        with:
+          path: cache
+          key: ostree-${{ inputs.variant }}-${{ matrix.arch }}
 
       - name: Install dependencies
-        id: deps
         run: |
           sudo dnf install -y podman moby-engine rpm-ostree melody just python3-pip pkg-config wget ostree ostree-devel rpm-ostree git hfsplus-tools flatpak dbus dbus-daemon rpmdevtools make mock selinux-policy python3-pip jq @development-tools gcc cairo-devel python3-devel 'pkgconfig(gobject-introspection-1.0)' 'pkgconfig(cairo-gobject)' 'dnf-command(config-manager)'
 
       - name: Install python dependencies
-        id: deps-py
         run: pip install yq
 
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Build OSTree
-        id: build
-        run: just build-image ${{ matrix.variant }}
+        run: just build-image ${{ inputs.variant }}
 
-      - name: Upload OCI image as artifact
+      - name: Upload OCI archive as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.variant }}-${{ matrix.arch }}-oci
+          name: ${{ inputs.variant }}-${{ matrix.arch }}-oci
           path: images/*
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y buildah
+
+      - name: Download OCI archive (x86_64)
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.variant }}-x86_64-oci
+
+      - name: Download OCI archive (aarch64)
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.variant }}-aarch64-oci
+
+      - name: Test
+        run: ls
+
+      # - name: Publish to registry
+      #   run: |
+      #     buildah manifest create manifest
+      #     buildah manifest add manifest oci-archive:*.tar
+      #     buildah manifest add manifest oci-archive:*.tar
+      #     buildah manifest push --all -f v2s2 example docker://terinjokes/example:latest

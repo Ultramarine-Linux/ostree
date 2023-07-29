@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - "README.md"
+  workflow_dispatch:
+  schedule:
+    # every sunday at 00:00
+    - cron: "0 0 * * 0"
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - ultramarine/base
+          - ultramarine/flagship
+          - ultramarine/gnome
+          - ultramarine/pantheon
+          - ultramarine/plasma
+          - tau/home
+    uses: ./.github/workflows/ostree.yml
+    with:
+      variant: ${{ matrix.variant }}
+    secrets: inherit
