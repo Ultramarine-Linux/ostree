@@ -55,15 +55,29 @@ jobs:
           name: ${{ env.VARIANT_SAFE_NAME }}-${{ matrix.arch }}-oci
           path: images/*
   publish:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       # Thanks GHA for not having a replace expression!
       - name: Get variant safe-name
         run: echo "VARIANT_SAFE_NAME=$(echo "${{inputs.variant}}" | tr / -)" >> $GITHUB_ENV
 
+      - name: Get image tag
+        run: echo "IMAGE_TAG=${{ startsWith(inputs.variant, 'ultramarine') && '38' || '1' }}" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y buildah
+
+      - name: Log in to ghcr.io
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
 
       - name: Download OCI archive (x86_64)
         uses: actions/download-artifact@v3
@@ -75,12 +89,8 @@ jobs:
         with:
           name: ${{ env.VARIANT_SAFE_NAME }}-aarch64-oci
 
-      - name: Test
-        run: ls
-
-      # - name: Publish to registry
-      #   run: |
-      #     buildah manifest create manifest
-      #     buildah manifest add manifest oci-archive:*.tar
-      #     buildah manifest add manifest oci-archive:*.tar
-      #     buildah manifest push --all -f v2s2 example docker://terinjokes/example:latest
+      - name: Publish to registry
+        run: |
+          buildah manifest create manifest
+          buildah manifest add manifest oci-archive:$VARIANT_SAFE_NAME-{x86_64,aarch64}.tar
+          buildah manifest push --all -f v2s2 example docker://ghcr.io/ultramarine-linux/$VARIANT_SAFE_NAME:$IMAGE_TAG
