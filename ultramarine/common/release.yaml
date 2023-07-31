@@ -1,5 +1,6 @@
 packages:
   - ultramarine-release
+  - ultramarine-release-common
   - ultramarine-repos
   - ultramarine-logos
   - ultramarine-logos-httpd
