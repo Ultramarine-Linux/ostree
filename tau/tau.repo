@@ -69,3 +69,14 @@ metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-rele
 enabled=0
 gpgcheck=0
 metadata_expire=1d
+
+[openh264]
+name=Cisco openh264
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-38&arch=$basearch
+type=rpm
+enabled=1
+metadata_expire=14d
+repo_gpgcheck=0
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-38-$basearch
+skip_if_unavailable=True
