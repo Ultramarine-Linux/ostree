@@ -33,7 +33,7 @@ compose-tree variant:
   sudo rpm-ostree compose tree --cachedir={{ostree_cache}} --repo={{ostree_repo}} --unified-core out/{{variant}}/0.yaml
 
 compose-image variant:
-  sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml {{images_dir}}/$(echo "{{variant}}" | tr / -)-$(uname -m).tar
+  sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml {{images_dir}}/$(echo "{{variant}}" | tr / -)-{{arch()}}.tar
 
 build-tree variant: prep (compile variant) (compose-tree variant)
 build-image variant: prep (compile variant) (compose-image variant)

@@ -1,0 +1,57 @@
+fedora_version := "38"
+ultramarine_version := fedora_version
+tau_version := "1"
+
+# Product is either ultramarine or tau
+# Image is in skopeo format
+# update_ref is the ostree container ref to use to update, in rpm-ostree format
+build product image update_ref:
+  lorax \
+    --source=https://dl.fedoraproject.org/pub/fedora/linux/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
+    --source=https://dl.fedoraproject.org/pub/fedora/linux/updates/{{fedora_version}}/{{arch()}}/ \
+    --source=https://download1.rpmfusion.org/free/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
+    --source=https://download1.rpmfusion.org/free/fedora/updates/{{fedora_version}}/{{arch()}}/ \
+    --source=https://download1.rpmfusion.org/nonfree/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
+    --source=https://download1.rpmfusion.org/nonfree/fedora/updates/{{fedora_version}}/{{arch()}}/ \
+    --source=https://repos.fyralabs.com/terra{{fedora_version}}/ \
+    --rootfs-size=8 \
+    --product={{ if product == "ultramarine" { "'Ultramarine Linux'" } else { "'tauOS'" } }} \
+    --version={{ if product == "ultramarine" { ultramarine_version } else { tau_version } }} \
+    --release=1 \
+    --source=https://repos.fyralabs.com/{{ if product == "ultramarine" { "um" + ultramarine_version } else { "tau" + tau_version } }}/ \
+    --installpkgs="fedora-repos" \
+    {{
+      if product == "ultramarine" {
+        "
+        --installpkgs="ultramarine-release" \
+        --installpkgs="ultramarine-release-basic" \
+        --installpkgs="ultramarine-repos" \
+        --installpkgs="ultramarine-logos" \
+        --installpkgs="ultramarine-backgrounds" \
+        "
+      } else {
+        "
+        --installpkgs=tau-logos \
+        --installpkgs=tau-release \
+        --installpkgs=tau-release-desktop \
+        --installpkgs=tau-repos \
+        --installpkgs=tau-gpg-keys \
+        --installpkgs=fedora-repos \
+        --installpkgs=tau-anaconda-profiles \
+        --installpkgs=tau-plymouth \
+        --installpkgs=tau-helium \
+        --installpkgs=tau-hydrogen \
+        --installpkgs=tau-manrope-fonts \
+        "
+      }
+    }}
+    --add-template=$(pwd)/lorax-embed-oci.tmpl \
+    --add-template=$(pwd)/lorax-configure-oci.tmpl \
+    --add-template-var=ostree_source_image={{image}} \
+    --add-template-var=ostree_stateroot={{product}} \
+    --add-template-var=ostree_update_image_reference={{update_ref}} \
+    --volid={{ if product == "ultramarine" { "Ultramarine-Installer" } else { "tauOS-Installer" } }} \
+    --skip-branding \
+    --logfile=$(pwd)/lorax.log \
+    --tmp=$(pwd)/tmp \
+    $(pwd)/home-{{arch()}}
