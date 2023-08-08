@@ -2,6 +2,28 @@ fedora_version := "38"
 ultramarine_version := fedora_version
 tau_version := "1"
 
+extra_ultramarine_flags := """
+  --installpkgs=ultramarine-release \
+  --installpkgs=ultramarine-release-basic \
+  --installpkgs=ultramarine-repos \
+  --installpkgs=ultramarine-logos \
+  --installpkgs=ultramarine-backgrounds \
+"""
+
+extra_tau_flags := """
+  --installpkgs=tau-logos \
+  --installpkgs=tau-release \
+  --installpkgs=tau-release-desktop \
+  --installpkgs=tau-repos \
+  --installpkgs=tau-gpg-keys \
+  --installpkgs=fedora-repos \
+  --installpkgs=tau-anaconda-profiles \
+  --installpkgs=tau-plymouth \
+  --installpkgs=tau-helium \
+  --installpkgs=tau-hydrogen \
+  --installpkgs=tau-manrope-fonts \
+"""
+
 # Product is either ultramarine or tau
 # Image is in skopeo format
 # update_ref is the ostree container ref to use to update, in rpm-ostree format
@@ -20,31 +42,7 @@ build product image update_ref:
     --release=1 \
     --source=https://repos.fyralabs.com/{{ if product == "ultramarine" { "um" + ultramarine_version } else { "tau" + tau_version } }}/ \
     --installpkgs="fedora-repos" \
-    {{
-      if product == "ultramarine" {
-        "
-        --installpkgs="ultramarine-release" \
-        --installpkgs="ultramarine-release-basic" \
-        --installpkgs="ultramarine-repos" \
-        --installpkgs="ultramarine-logos" \
-        --installpkgs="ultramarine-backgrounds" \
-        "
-      } else {
-        "
-        --installpkgs=tau-logos \
-        --installpkgs=tau-release \
-        --installpkgs=tau-release-desktop \
-        --installpkgs=tau-repos \
-        --installpkgs=tau-gpg-keys \
-        --installpkgs=fedora-repos \
-        --installpkgs=tau-anaconda-profiles \
-        --installpkgs=tau-plymouth \
-        --installpkgs=tau-helium \
-        --installpkgs=tau-hydrogen \
-        --installpkgs=tau-manrope-fonts \
-        "
-      }
-    }}
+    {{ if product == "ultramarine" { extra_ultramarine_flags } else { extra_tau_flags } }} \
     --add-template=$(pwd)/lorax-embed-oci.tmpl \
     --add-template=$(pwd)/lorax-configure-oci.tmpl \
     --add-template-var=ostree_source_image={{image}} \
