@@ -30,7 +30,7 @@ extra_tau_flags := """
 build product image update_ref:
   lorax \
     --source=https://dl.fedoraproject.org/pub/fedora/linux/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
-    --source=https://dl.fedoraproject.org/pub/fedora/linux/updates/{{fedora_version}}/{{arch()}}/ \
+    --source=https://dl.fedoraproject.org/pub/fedora/linux/updates/{{fedora_version}}/Everything/{{arch()}}/ \
     --source=https://download1.rpmfusion.org/free/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
     --source=https://download1.rpmfusion.org/free/fedora/updates/{{fedora_version}}/{{arch()}}/ \
     --source=https://download1.rpmfusion.org/nonfree/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
@@ -43,8 +43,8 @@ build product image update_ref:
     --source=https://repos.fyralabs.com/{{ if product == "ultramarine" { "um" + ultramarine_version } else { "tau" + tau_version } }}/ \
     --installpkgs="fedora-repos" \
     {{ if product == "ultramarine" { extra_ultramarine_flags } else { extra_tau_flags } }} \
-    --add-template=$(pwd)/lorax-embed-oci.tmpl \
-    --add-template=$(pwd)/lorax-configure-oci.tmpl \
+    --add-template=$(pwd)/templates/lorax-embed-oci.tmpl \
+    --add-template=$(pwd)/templates/lorax-configure-oci.tmpl \
     --add-template-var=ostree_source_image={{image}} \
     --add-template-var=ostree_stateroot={{product}} \
     --add-template-var=ostree_update_image_reference={{update_ref}} \
