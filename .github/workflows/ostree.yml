@@ -17,7 +17,7 @@ jobs:
           - aarch64
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: fedora:38
+      image: ghcr.io/terrapkg/builder:f38
       options: --cap-add=SYS_ADMIN --privileged
     steps:
       # Thanks GHA for not having a replace expression!
