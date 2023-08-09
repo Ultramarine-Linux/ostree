@@ -53,3 +53,5 @@ build product image update_ref:
     --logfile=$(pwd)/lorax.log \
     --tmp=$(pwd)/tmp \
     $(pwd)/home-{{arch()}}
+
+build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version)
