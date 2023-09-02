@@ -2,6 +2,9 @@ fedora_version := "38"
 ultramarine_version := fedora_version
 tau_version := "1"
 
+logs_dir := "logs"
+cache_dir := "cache"
+
 extra_ultramarine_flags := """
   --installpkgs=ultramarine-release \
   --installpkgs=ultramarine-release-basic \
@@ -24,10 +27,27 @@ extra_tau_flags := """
   --installpkgs=tau-manrope-fonts \
 """
 
+prep:
+  [ -d {{logs_dir}} ] || mkdir -p {{logs_dir}}
+
+clean-cache:
+  sudo rm -rf {{cache_dir}}
+
+clean-logs:
+  sudo rm -rf {{logs_dir}}
+
+clean-debugdata:
+  sudo rm -rf debugdata
+
+clean-out:
+  sudo rm -rf out
+
+clean: clean-cache clean-logs clean-debugdata clean-out
+
 # Product is either ultramarine or tau
 # Image is in skopeo format
 # update_ref is the ostree container ref to use to update, in rpm-ostree format
-build product image update_ref:
+build product image update_ref: prep
   lorax \
     --source=https://dl.fedoraproject.org/pub/fedora/linux/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
     --source=https://dl.fedoraproject.org/pub/fedora/linux/updates/{{fedora_version}}/Everything/{{arch()}}/ \
@@ -50,8 +70,8 @@ build product image update_ref:
     --add-template-var=ostree_update_image_reference={{update_ref}} \
     --volid={{ if product == "ultramarine" { "Ultramarine-Installer" } else { "tauOS-Installer" } }} \
     --skip-branding \
-    --logfile=$(pwd)/lorax.log \
-    --tmp=$(pwd)/tmp \
-    $(pwd)/home-{{arch()}}
+    --logfile=$(pwd)/logs/lorax.log \
+    --cachedir=$(pwd)/cache \
+    $(pwd)/out
 
 build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version)
