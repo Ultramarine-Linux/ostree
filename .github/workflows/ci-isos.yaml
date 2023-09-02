@@ -1,0 +1,31 @@
+name: CI - ISOs
+
+on:
+  workflow_dispatch:
+  schedule:
+    # every week at midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - product: ultramarine
+            variant: base
+          - product: ultramarine
+            variant: flagship
+          - product: ultramarine
+            variant: gnome
+          - product: ultramarine
+            variant: pantheon
+          - product: ultramarine
+            variant: plasma
+          - product: tau
+            variant: home
+    uses: ./.github/workflows/ostree.yml
+    with:
+      product: ${{ matrix.build.product }}
+      variant: ${{ matrix.build.variant }}
+    secrets: inherit
