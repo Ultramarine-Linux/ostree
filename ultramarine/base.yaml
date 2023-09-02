@@ -17,3 +17,4 @@ repos:
 
 packages:
   - ultramarine-release-basic
+  - ultramarine-release-identity-basic
