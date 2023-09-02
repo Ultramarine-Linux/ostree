@@ -6,8 +6,8 @@ on:
       - "README.md"
   workflow_dispatch:
   schedule:
-    # every sunday at 00:00
-    - cron: "0 0 * * 0"
+    # every day at midnight
+    - cron: "0 0 * * *"
 
 jobs:
   ci:
