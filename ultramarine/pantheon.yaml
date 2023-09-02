@@ -1,10 +1,12 @@
-ref: ultramarine/38/pantheon/${basearch}
-releasever: "38"
+ref: ultramarine/39/pantheon/${basearch}
+releasever: "39"
 
 include:
-  - common/desktop.yaml
+  - ../common/desktop.yaml
+  - ../common/graphical.yaml
+  - ../common/common.yaml
+  - common/release.yaml
   - common/graphical.yaml
-  - common/common.yaml
 
 repos:
   - ultramarine
@@ -24,3 +26,7 @@ groups:
       - libproxy-webkitgtk4
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
+
+packages:
+  - ultramarine-release-pantheon
+  - ultramarine-release-identity-pantheon

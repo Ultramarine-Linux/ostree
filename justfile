@@ -1,9 +1,13 @@
 registry_auth := "auth.json"
 ostree_cache := "cache"
+ostree_repo := "ostree-repo"
 initialize := "--initialize"
+images_dir := "images"
 
 prep:
   [ -d {{ostree_cache}} ] || mkdir -p {{ostree_cache}}
+  [ -d {{ostree_repo}} ] || ostree init --repo={{ostree_repo}}
+  [ -d {{images_dir}} ] || mkdir -p {{images_dir}}
 
 clean-cache:
   sudo rm -rf {{ ostree_cache }}
@@ -14,20 +18,26 @@ clean-variant variant:
 clean-out:
   rm -rf ./out
 
-clean: clean-cache clean-out
+clean-repo:
+  rm -rf ./{{ostree_repo}}
+
+clean-images:
+  rm -rf ./{{images_dir}}
+
+clean: clean-cache clean-out clean-repo clean-images
 
 compile variant: (clean-variant variant)
-  melody compile ultramarine/{{variant}}.yaml out/{{variant}}
+  melody compile {{variant}}.yaml out/{{variant}}
 
-compose variant:
-  sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml image
+compose-tree variant:
+  sudo rpm-ostree compose tree --cachedir={{ostree_cache}} --repo={{ostree_repo}} --unified-core out/{{variant}}/0.yaml
 
-compose-registry variant:
-  sudo rpm-ostree compose image --format=registry --cachedir={{ostree_cache}} --copy-retry-times=20 --authfile={{registry_auth}} {{initialize}} out/{{variant}}/0.yaml ghcr.io/ultramarine-linux/{{variant}}-ostree:38
+compose-image variant:
+  sudo rpm-ostree compose image --cachedir={{ostree_cache}} {{initialize}} out/{{variant}}/0.yaml {{images_dir}}/$(echo "{{variant}}" | tr / -)-{{arch()}}.tar
 
-build variant: prep (compile variant) (compose variant)
-build-registry variant: prep (compile variant) (compose-registry variant)
+build-tree variant: prep (compile variant) (compose-tree variant)
+build-image variant: prep (compile variant) (compose-image variant)
 
-compile-all: (compile "base") (compile "flagship") (compile "gnome") (compile "pantheon") (compile "plasma")
-build-all: (build "base") (build "flagship") (build "gnome") (build "pantheon") (build "plasma")
-build-all-registry: (build-registry "base") (build-registry "flagship") (build-registry "gnome") (build-registry "pantheon") (build-registry "plasma")
+compile-all: (compile "ultramarine/base") (compile "ultramarine/flagship") (compile "ultramarine/gnome") (compile "ultramarine/pantheon") (compile "ultramarine/plasma") (compile "tau/home")
+build-all-tree: (build-tree "ultramarine/base") (build-tree "ultramarine/flagship") (build-tree "ultramarine/gnome") (build-tree "ultramarine/pantheon") (build-tree "ultramarine/plasma") (build-tree "tau/home")
+build-all-image: (build-image "ultramarine/base") (build-image "ultramarine/flagship") (build-image "ultramarine/gnome") (build-image "ultramarine/pantheon") (build-image "ultramarine/plasma") (build-image "tau/home")

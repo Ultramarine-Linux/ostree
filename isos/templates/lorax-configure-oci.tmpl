@@ -1,0 +1,28 @@
+## Lorax template to configure Anaconda to:
+##  1) Use the image we embedded in the ISO
+##  2) Tell anaconda to leave the firewall set up as it was in the ostree
+
+## Args:
+##  - ostree_stateroot               - the name of the OSTree stateroot; previously known as the osname
+##  - ostree_update_image_reference  - the image reference of the OSTree image to pull updates from, in rpm-ostree format
+
+<%page args="ostree_stateroot"/>
+# TODO: PR into Anaconda to expose the --target-imgref option to the ostreecontainer command
+# This will allow us to avoid our post workaround, which updates the origin file manually
+append usr/share/anaconda/interactive-defaults.ks "ostreecontainer --stateroot=${ostree_stateroot} --no-signature-verification --transport oci --url /oci-root"
+append usr/share/anaconda/interactive-defaults.ks "firewall --use-system-defaults"
+
+append usr/share/anaconda/interactive-defaults.ks "%post --erroronfail --interpreter /usr/bin/python"
+append usr/share/anaconda/interactive-defaults.ks "import gi"
+append usr/share/anaconda/interactive-defaults.ks "gi.require_version('OSTree', '1.0')"
+append usr/share/anaconda/interactive-defaults.ks "from gi.repository import OSTree, GLib"
+
+append usr/share/anaconda/interactive-defaults.ks "sysroot = OSTree.Sysroot.new_default()"
+append usr/share/anaconda/interactive-defaults.ks "sysroot.load()"
+append usr/share/anaconda/interactive-defaults.ks "deployment = sysroot.get_deployments()[0]"
+
+append usr/share/anaconda/interactive-defaults.ks "origin_file = GLib.KeyFile.new()"
+append usr/share/anaconda/interactive-defaults.ks "origin_file.set_string('origin', 'container-image-reference', '${ostree_update_image_reference}')"
+
+append usr/share/anaconda/interactive-defaults.ks "sysroot.write_origin_file(deployment, origin_file)"
+append usr/share/anaconda/interactive-defaults.ks "%end"

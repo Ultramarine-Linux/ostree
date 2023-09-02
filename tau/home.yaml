@@ -1,12 +1,14 @@
-ref: ultramarine/39/base/${basearch}
+ref: tau/1/home/${basearch}
 releasever: "39"
 
 include:
+  - ../common/desktop.yaml
+  - ../common/graphical.yaml
   - ../common/common.yaml
   - common/release.yaml
 
 repos:
-  - ultramarine
+  - tau
   - terra
   - rpmfusion-free
   - rpmfusion-nonfree
@@ -16,5 +18,9 @@ repos:
   - fedora-updates
 
 packages:
-  - ultramarine-release-basic
-  - ultramarine-release-identity-basic
+  - distrobox
+  - chromium
+  - starship
+  - tau-release-desktop
+  - tau-starship
+  # - catalogue

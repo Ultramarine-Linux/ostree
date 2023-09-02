@@ -1,0 +1,56 @@
+name: OSTree build
+
+on:
+  workflow_call:
+    inputs:
+      product:
+        required: true
+        type: string
+      variant:
+        required: true
+        type: string
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - x86_64
+          - aarch64
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    container:
+      image: ghcr.io/terrapkg/builder:f39
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      # Thanks GHA for not having a replace expression!
+      - name: Get variant safe-name
+        run: echo "VARIANT_SAFE_NAME=$(echo "${{inputs.variant}}" | tr / -)" >> $GITHUB_ENV
+
+      - name: DNF Cache
+        uses: actions/cache@v3
+        with:
+          path: /var/cache/dnf
+          key: dnf-${{ inputs.variant }}-${{ matrix.arch }}
+
+      - name: Lorax Cache
+        uses: actions/cache@v3
+        with:
+          path: isos/cache
+          key: lorax-${{ inputs.product }}-${{ inputs.variant }}-${{ matrix.arch }}
+
+      - name: Install dependencies
+        run: |
+          sudo dnf5 install -y lorax-lmc-novirt pykickstart just
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build ISO
+        run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
+
+      - name: Upload ISO as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.VARIANT_SAFE_NAME }}-${{ matrix.arch }}-iso
+          path: isos/images/boot.iso

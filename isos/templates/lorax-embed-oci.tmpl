@@ -1,0 +1,9 @@
+## Lorax template to embed an OSTree container image into the installer.iso
+
+## Args:
+## Args:
+##  - root               - the root directory of the iso tree
+##  - ostree_source_image- the source image during ISO creation, specified in "transport":"details" format as specified by skopeo
+
+<%page args="root, ostree_source_image"/>
+runcmd skopeo copy ${ostree_source_image} oci:${root}/oci-root
