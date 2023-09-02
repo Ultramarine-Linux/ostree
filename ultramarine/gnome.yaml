@@ -1,5 +1,5 @@
-ref: ultramarine/38/gnome/${basearch}
-releasever: "38"
+ref: ultramarine/39/gnome/${basearch}
+releasever: "39"
 
 include:
   - ../common/desktop.yaml

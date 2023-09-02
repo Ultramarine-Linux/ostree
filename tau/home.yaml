@@ -1,5 +1,5 @@
 ref: tau/1/home/${basearch}
-releasever: "38"
+releasever: "39"
 
 include:
   - ../common/desktop.yaml

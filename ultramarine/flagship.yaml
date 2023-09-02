@@ -1,5 +1,5 @@
-ref: ultramarine/38/flagship/${basearch}
-releasever: "38"
+ref: ultramarine/39/flagship/${basearch}
+releasever: "39"
 
 include:
   - ../common/desktop.yaml
