@@ -17,6 +17,7 @@ repos:
   - rpmfusion-nonfree-updates
   - fedora
   - fedora-updates
+  - openh264
 
 groups:
   - id: gnome-desktop

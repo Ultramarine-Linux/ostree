@@ -36,8 +36,6 @@ gpgcheck=1
 metadata_expire=1d
 enabled_metadata=0
 
-
-
 [rpmfusion-free]
 name=RPM Fusion - Free
 #baseurl=http://download1.rpmfusion.org/free/fedora/releases/$releasever/Everything/$basearch/os/
@@ -66,6 +64,14 @@ metadata_expire=1d
 name=RPM Fusion - Nonfree - Updates
 #baseurl=http://download1.rpmfusion.org/nonfree/fedora/updates/$releasever/$basearch/
 metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
+enabled=0
+gpgcheck=0
+metadata_expire=1d
+
+[openh264]
+name=Cisco openh264
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-$releasever&arch=$basearch
+type=rpm
 enabled=0
 gpgcheck=0
 metadata_expire=1d

@@ -16,6 +16,7 @@ repos:
   - rpmfusion-nonfree-updates
   - fedora
   - fedora-updates
+  - openh264
 
 packages:
   - distrobox
