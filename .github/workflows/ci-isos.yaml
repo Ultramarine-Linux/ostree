@@ -24,7 +24,7 @@ jobs:
             variant: plasma
           - product: tau
             variant: home
-    uses: ./.github/workflows/ostree.yml
+    uses: ./.github/workflows/iso.yml
     with:
       product: ${{ matrix.build.product }}
       variant: ${{ matrix.build.variant }}
