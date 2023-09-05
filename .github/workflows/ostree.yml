@@ -92,5 +92,6 @@ jobs:
       - name: Publish to registry
         run: |
           buildah manifest create manifest
-          buildah manifest add manifest oci-archive:$VARIANT_SAFE_NAME-{x86_64,aarch64}.tar
+          buildah manifest add manifest oci-archive:$VARIANT_SAFE_NAME-x86_64.tar
+          buildah manifest add manifest oci-archive:$VARIANT_SAFE_NAME-aarch64.tar
           buildah manifest push --all -f v2s2 example docker://ghcr.io/ultramarine-linux/$VARIANT_SAFE_NAME:$IMAGE_TAG
