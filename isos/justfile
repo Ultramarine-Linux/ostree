@@ -49,12 +49,12 @@ clean: clean-cache clean-logs clean-debugdata clean-out
 # update_ref is the ostree container ref to use to update, in rpm-ostree format
 build product image update_ref: prep
   lorax \
-    --source=https://dl.fedoraproject.org/pub/fedora/linux/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
-    --source=https://dl.fedoraproject.org/pub/fedora/linux/updates/{{fedora_version}}/Everything/{{arch()}}/ \
-    --source=https://download1.rpmfusion.org/free/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
-    --source=https://download1.rpmfusion.org/free/fedora/updates/{{fedora_version}}/{{arch()}}/ \
-    --source=https://download1.rpmfusion.org/nonfree/fedora/releases/{{fedora_version}}/Everything/{{arch()}}/os/ \
-    --source=https://download1.rpmfusion.org/nonfree/fedora/updates/{{fedora_version}}/{{arch()}}/ \
+    --mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=fedora-{{fedora_version}}&arch={{arch()}} \
+    --mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f{{fedora_version}}&arch={{arch()}} \
+    --mirrorlist=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-{{fedora_version}}&arch={{arch()}} \
+    --mirrorlist=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-updates-released-{{fedora_version}}&arch={{arch()}} \
+    --mirrorlist=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-{{fedora_version}}&arch={{arch()}} \
+    --mirrorlist=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-{{fedora_version}}&arch={{arch()}} \
     --source=https://repos.fyralabs.com/terra{{fedora_version}}/ \
     --rootfs-size=8 \
     --product={{ if product == "ultramarine" { "'Ultramarine Linux'" } else { "'tauOS'" } }} \
