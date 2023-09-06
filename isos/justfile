@@ -75,3 +75,5 @@ build product image update_ref: prep
     $(pwd)/out
 
 build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + ultramarine_version)
+build-tau variant: (build "tau" "docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + tau_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + "-ostree:" + tau_version)
+
