@@ -41,7 +41,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo dnf5 install -y lorax-lmc-novirt pykickstart just
+          sudo dnf5 install -y lorax-lmc-novirt pykickstart just skopeo
 
       - name: Checkout
         uses: actions/checkout@v3
