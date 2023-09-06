@@ -62,6 +62,7 @@ build product image update_ref: prep
     --release=1 \
     --source=https://repos.fyralabs.com/{{ if product == "ultramarine" { "um" + ultramarine_version } else { "tau" + tau_version } }}/ \
     --installpkgs="fedora-repos" \
+    {{ if arch() == "x86_64" { "--macboot" } else { --nomacboot"" } }} \
     {{ if product == "ultramarine" { extra_ultramarine_flags } else { extra_tau_flags } }} \
     --add-template=$(pwd)/templates/lorax-embed-oci.tmpl \
     --add-template=$(pwd)/templates/lorax-configure-oci.tmpl \
