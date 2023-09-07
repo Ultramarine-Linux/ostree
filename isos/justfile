@@ -75,6 +75,6 @@ build product image update_ref: prep
     --cachedir=$(pwd)/cache \
     $(pwd)/out
 
-build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/" + variant + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + ultramarine_version)
-build-tau variant: (build "tau" "docker://ghcr.io/ultramarine-linux/" + variant + tau_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + variant + tau_version)
+build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/" + ":" + variant + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + ":" + variant + ultramarine_version)
+build-tau variant: (build "tau" "docker://ghcr.io/ultramarine-linux/" + ":" + variant + tau_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/" + ":" + variant + tau_version)
 
