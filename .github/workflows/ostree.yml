@@ -55,7 +55,7 @@ jobs:
           name: ${{ env.VARIANT_SAFE_NAME }}-${{ matrix.arch }}-oci
           path: images/*
   publish:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event_name == 'workflow_dispatch' && github.event_name == 'schedule'
     needs: build
     runs-on: ubuntu-latest
     permissions:
