@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.VARIANT_SAFE_NAME }}-${{ matrix.arch }}-iso
-          path: isos/images/boot.iso
+          path: isos/out/images/boot.iso
