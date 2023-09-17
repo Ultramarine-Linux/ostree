@@ -18,5 +18,4 @@ repos:
   - openh264
 
 packages:
-  - ultramarine-release-basic
   - ultramarine-release-identity-basic
