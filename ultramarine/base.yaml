@@ -4,6 +4,7 @@ releasever: "39"
 include:
   - ../common/common.yaml
   - common/release.yaml
+  - common/common.yaml
 
 repos:
   - ultramarine
