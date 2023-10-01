@@ -29,4 +29,4 @@ groups:
       - libproxy-webkitgtk4
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
-  - id: pantheon-product
+  - id: ultramarine-pantheon-product

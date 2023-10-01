@@ -1,4 +1,4 @@
-ref: ultramarine/39/plasma/${basearch}
+ref: ultramarine/39/kde/${basearch}
 releasever: "39"
 
 include:
@@ -29,4 +29,4 @@ groups:
       - libproxy-webkitgtk4
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
-  - id: plasma-product
+  - id: ultramarine-kde-product

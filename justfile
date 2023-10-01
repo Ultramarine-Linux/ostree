@@ -38,6 +38,6 @@ compose-image variant:
 build-tree variant: prep (compile variant) (compose-tree variant)
 build-image variant: prep (compile variant) (compose-image variant)
 
-compile-all: (compile "ultramarine/base") (compile "ultramarine/flagship") (compile "ultramarine/gnome") (compile "ultramarine/pantheon") (compile "ultramarine/plasma") (compile "tau/home")
-build-all-tree: (build-tree "ultramarine/base") (build-tree "ultramarine/flagship") (build-tree "ultramarine/gnome") (build-tree "ultramarine/pantheon") (build-tree "ultramarine/plasma") (build-tree "tau/home")
-build-all-image: (build-image "ultramarine/base") (build-image "ultramarine/flagship") (build-image "ultramarine/gnome") (build-image "ultramarine/pantheon") (build-image "ultramarine/plasma") (build-image "tau/home")
+compile-all: (compile "ultramarine/base") (compile "ultramarine/flagship") (compile "ultramarine/gnome") (compile "ultramarine/pantheon") (compile "ultramarine/kde") (compile "tau/home")
+build-all-tree: (build-tree "ultramarine/base") (build-tree "ultramarine/flagship") (build-tree "ultramarine/gnome") (build-tree "ultramarine/pantheon") (build-tree "ultramarine/kde") (build-tree "tau/home")
+build-all-image: (build-image "ultramarine/base") (build-image "ultramarine/flagship") (build-image "ultramarine/gnome") (build-image "ultramarine/pantheon") (build-image "ultramarine/kde") (build-image "tau/home")
