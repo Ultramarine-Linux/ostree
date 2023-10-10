@@ -30,3 +30,7 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-pantheon-product
+
+packages:
+  - ultramarine-release-identity-pantheon
+  - ultramarine-release-pantheon

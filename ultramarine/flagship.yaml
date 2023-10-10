@@ -29,3 +29,7 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-flagship-product
+
+packages:
+  - ultramarine-release-identity-flagship
+  - ultramarine-release-flagship

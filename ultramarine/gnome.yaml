@@ -30,3 +30,12 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-gnome-product
+
+packages:
+  - ultramarine-release-identity-gnome
+  - ultramarine-release-gnome
+  - ultramarine-gnome-filesystem
+  - pop-launcher
+  - system76-scheduler
+  - gnome-shell-extension-pop-shell
+  - gnome-shell-extension-pop-shell-shortcut-overrides

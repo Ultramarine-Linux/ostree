@@ -30,3 +30,8 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-kde-product
+
+packages:
+  - ultramarine-release-identity-kde
+  - ultramarine-release-kde
+  - ultramarine-plasma-theme
