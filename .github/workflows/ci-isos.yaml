@@ -8,8 +8,9 @@ on:
 
 jobs:
   ci:
+    concurrency:
+      group: ${{ github.workflow }}-${{ matrix.build.product }}-${{ matrix.build.variant }}
     strategy:
-      max-parallel: 2
       fail-fast: false
       matrix:
         build:

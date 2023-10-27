@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     strategy:
-      max-parallel: 2
       fail-fast: false
       matrix:
         arch:

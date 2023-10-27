@@ -11,8 +11,9 @@ on:
 
 jobs:
   ci:
+    concurrency:
+      group: ${{ github.workflow }}-${{ matrix.variant }}
     strategy:
-      max-parallel: 2
       fail-fast: false
       matrix:
         variant:
