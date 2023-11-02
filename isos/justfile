@@ -56,7 +56,7 @@ build product image update_ref: prep
     --mirrorlist='https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-{{fedora_version}}&arch={{arch()}}' \
     --mirrorlist='https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-updates-released-{{fedora_version}}&arch={{arch()}}' \
     --source=https://repos.fyralabs.com/terra{{fedora_version}}/ \
-    --rootfs-size=8 \
+    --rootfs-size=12 \
     --product={{ if product == "ultramarine" { "'Ultramarine Linux'" } else { "'tauOS'" } }} \
     --version={{ if product == "ultramarine" { ultramarine_version } else { tau_version } }} \
     --release=1 \
