@@ -9,7 +9,7 @@ on:
 jobs:
   ci:
     concurrency:
-      group: ${{ github.workflow }}-${{ matrix.build.product }}-${{ matrix.build.variant }}
+      group: ${{ github.workflow }}
     strategy:
       fail-fast: false
       matrix:
