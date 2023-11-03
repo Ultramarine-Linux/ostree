@@ -12,6 +12,7 @@ jobs:
     #   group: ${{ github.workflow }}
     #   cancel-in-progress: false
     strategy:
+      max-parallel: 2
       fail-fast: false
       matrix:
         build:
