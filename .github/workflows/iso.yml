@@ -12,17 +12,13 @@ on:
 
 jobs:
   build:
-    # only limit concurrency group if arch is aarch64
-
-    concurrency:
-      group: ${{ matrix.arch == 'aarch64' && 'aarch64'}}
-      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
         arch:
           - x86_64
           - aarch64
+      max-parallel: 2
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f39
