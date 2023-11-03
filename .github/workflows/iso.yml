@@ -12,6 +12,11 @@ on:
 
 jobs:
   build:
+    # only limit concurrency group if arch is aarch64
+
+    concurrency:
+      group: ${{ matrix.arch == 'aarch64' && 'aarch64' || '' }}
+      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
