@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
       image: ghcr.io/terrapkg/builder:f39
-      options: --cap-add=SYS_ADMIN --privileged
+      options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev --memory-swap=-1
     steps:
       # Thanks GHA for not having a replace expression!
       - name: Get variant safe-name
