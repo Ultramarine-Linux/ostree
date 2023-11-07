@@ -45,7 +45,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build ISO
-        run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
+        uses: nick-fields/retry@v2.9.0
+        with:
+          command: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
+          warning_on_retry: true
+          max_attempts: 3
+
+      # - name: Build ISO
+      #   run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
 
       - name: Upload ISO as artifact
         uses: actions/upload-artifact@v3
