@@ -1,2 +1,6 @@
 groups:
   - id: ultramarine-desktop-product-common
+packages:
+  - uutils-coreutils-replace
+exclude-packages:
+  - coreutils
