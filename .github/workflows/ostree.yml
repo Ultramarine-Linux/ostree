@@ -9,9 +9,9 @@ on:
 
 jobs:
   build:
-    concurrency: 
-      group: ${{ github.workflow }}-${{ inputs.variant }}
-      cancel-in-progress: true
+    # concurrency: 
+    #   group: ${{ github.workflow }}-${{ inputs.variant }}
+    #   cancel-in-progress: true
     strategy:
       fail-fast: false
       matrix:

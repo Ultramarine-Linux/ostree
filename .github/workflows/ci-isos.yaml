@@ -8,9 +8,9 @@ on:
 
 jobs:
   ci:
-    # concurrency:
-    #   group: ${{ github.workflow }}
-    #   cancel-in-progress: false
+    concurrency:
+      group: ${{ github.workflow }}-${{ matrix.build.product }}-${{ matrix.build.variant }}
+      cancel-in-progress: false
     strategy:
       max-parallel: 2
       fail-fast: false
