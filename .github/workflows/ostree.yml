@@ -52,6 +52,8 @@ jobs:
           command: just build-image ${{ inputs.variant }}
           warning_on_retry: true
           max_attempts: 3
+          timeout_minutes: 300
+
 
       - name: Upload OCI archive as artifact
         uses: actions/upload-artifact@v3

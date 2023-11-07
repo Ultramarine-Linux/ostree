@@ -50,6 +50,7 @@ jobs:
           command: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
           warning_on_retry: true
           max_attempts: 3
+          timeout_minutes: 300
 
       # - name: Build ISO
       #   run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
