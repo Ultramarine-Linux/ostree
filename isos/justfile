@@ -27,7 +27,7 @@ extra_tau_flags := """
   --installpkgs=tau-manrope-fonts \
 """
 
-prep:
+prep: clean-out
   [ -d {{logs_dir}} ] || mkdir -p {{logs_dir}}
 
 clean-cache:
