@@ -5,5 +5,3 @@ groups:
 packages:
   - moby-engine
 
-exclude-packages:
-  - podman-docker

@@ -2,6 +2,3 @@
 packages:
   - distrobox
   - moby-engine
-
-exclude-packages:
-  - podman-docker
