@@ -39,3 +39,4 @@ packages:
   - system76-scheduler
   - gnome-shell-extension-pop-shell
   - gnome-shell-extension-pop-shell-shortcut-overrides
+  - adwaita-gtk2-theme
