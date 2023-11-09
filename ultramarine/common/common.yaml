@@ -1,2 +1,9 @@
 groups:
   - id: ultramarine-desktop-product-common
+
+
+packages:
+  - moby-engine
+
+exclude-packages:
+  - podman-docker

@@ -2,6 +2,8 @@ fedora_version := "39"
 ultramarine_version := fedora_version
 tau_version := "1"
 
+container_registry := "ghcr.io/ultramarine-linux/"
+
 logs_dir := "logs"
 cache_dir := "cache"
 
@@ -75,6 +77,6 @@ build product image update_ref: prep
     --cachedir=$(pwd)/cache \
     $(pwd)/out
 
-build-ultramarine variant: (build "ultramarine" "docker://ghcr.io/ultramarine-linux/ultramarine-" + variant + ":" + ultramarine_version "ostree-unverified-image:docker://ghcr.io/ultramarine-" + variant + ":" + ultramarine_version)
-build-tau variant: (build "tau" "docker://ghcr.io/ultramarine-linux/tau-" + variant + ":" + tau_version "ostree-unverified-image:docker://ghcr.io/ultramarine-linux/tau-" + variant + ":" + tau_version)
+build-ultramarine variant: (build "ultramarine" "docker://" + container_registry + "ultramarine-" + variant + ":" + ultramarine_version "ostree-unverified-image:docker://" + container_registry + "ultramarine-" + variant + ":" + ultramarine_version)
+build-tau variant: (build "tau" "docker://" + container_registry + "tau-" + variant + ":" + tau_version "ostree-unverified-image:docker://" + container_registry + "tau-" + variant + ":" + tau_version)
 
