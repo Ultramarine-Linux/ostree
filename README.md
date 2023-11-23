@@ -2,6 +2,8 @@
 
 [![Build and deploy OSTree image](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ostree.yml/badge.svg)](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ostree.yml)
 
+These builds are currently in beta. If you are planning to test them, please [join our Discord](https://discord.gg/bUuQasHdrF) and let us know. We'll be happy to receive feedback and assist you :)
+
 # 🛠️ Dependencies
 
 Please make sure you have these dependencies first before building.
