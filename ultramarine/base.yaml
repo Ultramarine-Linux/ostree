@@ -15,7 +15,7 @@ repos:
   - rpmfusion-nonfree-updates
   - fedora
   - fedora-updates
-  - fedora-updates-testing # TODO: Remove once Fedora 39 hits stable
+  # - fedora-updates-testing # TODO: Remove once Fedora 39 hits stable
   - openh264
 
 packages:
