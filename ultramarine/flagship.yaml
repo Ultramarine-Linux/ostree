@@ -5,6 +5,7 @@ include:
   - ../common/desktop.yaml
   - ../common/graphical.yaml
   - ../common/common.yaml
+  - ../common/hardware.yaml
   - common/release.yaml
   - common/graphical.yaml
   - common/common.yaml
