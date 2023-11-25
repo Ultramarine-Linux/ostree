@@ -8,6 +8,9 @@ groups:
       - intel-media-driver
       - libva-intel-driver
       - broadcom-wl
+      # TODO: multican isn't even in Fedora 39, yet is in the Fedora comps.xml for 39
+      # We should notify upstream
+      - multican
   - id: server-hardware-support
 
 # TODO: Add NVIDIA and other proprietary hardware here
