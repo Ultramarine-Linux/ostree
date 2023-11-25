@@ -27,7 +27,8 @@ packages-x86_64:
   - cmospwd
   - intel-media-driver
   - libva-intel-driver
-  - broadcom-wl
+  # TODO: breaks tree build due to an issue in the %post script under the OSTree build renv
+  # - broadcom-wl
 
 packages-aarch64:
   - bcm283x-firmware
