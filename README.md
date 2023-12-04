@@ -1,8 +1,15 @@
 # Tree files for Ultramarine and tauOS variants
 
-[![Build and deploy OSTree image](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ostree.yml/badge.svg)](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ostree.yml)
+[![CI - OSTree](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ci-ostree.yml/badge.svg)](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ci-ostree.yml)
+[![CI - ISOs](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ci-isos.yaml/badge.svg)](https://github.com/Ultramarine-Linux/ostree-config/actions/workflows/ci-isos.yaml)
 
 These builds are currently in beta. If you are planning to test them, please [join our Discord](https://discord.gg/bUuQasHdrF) first and let us know. We'll be happy to receive feedback and assist you :)
+
+<details>
+  <summary>Downloads (please reach out on our Discord first)</summary>
+
+  * [Nightly ISOs](https://nightly.link/Ultramarine-Linux/ostree-config/workflows/ci-isos.yaml/main?preview)
+</details>
 
 # 🛠️ Dependencies
 
