@@ -1,7 +1,7 @@
 groups:
   - id: ultramarine-desktop-product-common
-
+  - id: ultramarine-product-common
 
 packages:
-  - moby-engine
-
+  # - moby-engine ???
+  - hyfetch-neofetch
