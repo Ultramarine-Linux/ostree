@@ -31,7 +31,10 @@ groups:
       - PackageKit-gtk3-module
       - budgie-desktop-defaults
   - id: ultramarine-flagship-product
+    blacklist:
+      - ultramarine-release-flagship
+      - ultramarine-release-identity-flagship
 
 packages:
-  - ultramarine-release-identity-flagship
-  - ultramarine-release-flagship
+  - ultramarine-release-identity-atomic-flagship
+  - ultramarine-release-atomic-flagship

@@ -31,8 +31,11 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-kde-product
+    blacklist:
+      - ultramarine-release-kde
+      - ultramarine-release-identity-kde
 
 packages:
-  - ultramarine-release-identity-kde
-  - ultramarine-release-kde
+  - ultramarine-release-identity-atomic-kde
+  - ultramarine-release-atomic-kde
   - ultramarine-plasma-theme

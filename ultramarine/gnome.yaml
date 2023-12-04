@@ -31,10 +31,13 @@ groups:
       - PackageKit-command-not-found
       - PackageKit-gtk3-module
   - id: ultramarine-gnome-product
+    blacklist:
+      - ultramarine-release-gnome
+      - ultramarine-release-identity-gnome
 
 packages:
-  - ultramarine-release-identity-gnome
-  - ultramarine-release-gnome
+  - ultramarine-release-atomic-gnome
+  - ultramarine-release-identity-atomic-gnome
   - ultramarine-gnome-filesystem
   - pop-launcher
   - system76-scheduler
