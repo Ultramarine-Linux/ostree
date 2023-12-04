@@ -38,9 +38,4 @@ groups:
 packages:
   - ultramarine-release-atomic-gnome
   - ultramarine-release-identity-atomic-gnome
-  - ultramarine-gnome-filesystem
-  - pop-launcher
-  - system76-scheduler
-  - gnome-shell-extension-pop-shell
-  - gnome-shell-extension-pop-shell-shortcut-overrides
   - adwaita-gtk2-theme
