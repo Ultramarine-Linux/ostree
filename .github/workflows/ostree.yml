@@ -18,7 +18,7 @@ jobs:
         arch:
           - x86_64
           - aarch64
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'x86-64-lg' }}
     container:
       image: ghcr.io/terrapkg/builder:f39
       options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev --memory-swap=-1
