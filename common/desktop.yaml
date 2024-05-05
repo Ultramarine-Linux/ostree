@@ -2,3 +2,4 @@
 packages:
   - distrobox
   - moby-engine
+  - appimagelauncher
