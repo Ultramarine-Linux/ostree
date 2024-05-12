@@ -24,7 +24,7 @@ jobs:
       max-parallel: 2
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'x86-64-lg' }}
     container:
-      image: ghcr.io/terrapkg/builder:f39
+      image: ghcr.io/terrapkg/builder:f40
       options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev --memory-swap=-1
     steps:
       # Thanks GHA for not having a replace expression!
