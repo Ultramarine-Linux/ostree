@@ -73,7 +73,7 @@ jobs:
         run: echo "VARIANT_SAFE_NAME=$(echo "${{inputs.variant}}" | tr / -)" >> $GITHUB_ENV
 
       - name: Get image tag
-        run: echo "IMAGE_TAG=${{ startsWith(inputs.variant, 'ultramarine') && '39' || '1' }}" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=${{ startsWith(inputs.variant, 'ultramarine') && '40' || '1' }}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y buildah

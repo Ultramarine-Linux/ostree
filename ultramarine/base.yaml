@@ -1,5 +1,5 @@
-ref: ultramarine/39/base/${basearch}
-releasever: "39"
+ref: ultramarine/40/base/${basearch}
+releasever: "40"
 
 include:
   - ../common/common.yaml
@@ -16,7 +16,7 @@ repos:
   - rpmfusion-nonfree-updates
   - fedora
   - fedora-updates
-  # - fedora-updates-testing # TODO: Remove once Fedora 39 hits stable
+  # - fedora-updates-testing # TODO: Remove once Fedora 40 hits stable
   - openh264
 
 packages:

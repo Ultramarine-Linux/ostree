@@ -8,7 +8,7 @@ groups:
       - intel-media-driver
       - libva-intel-driver
       - broadcom-wl
-      # TODO: multican isn't even in Fedora 39, yet is in the Fedora comps.xml for 39
+      # TODO: multican isn't even in Fedora 40, yet is in the Fedora comps.xml for 40
       # We should notify upstream
       - multican
   - id: server-hardware-support

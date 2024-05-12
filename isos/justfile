@@ -1,4 +1,4 @@
-fedora_version := "39"
+fedora_version := "40"
 ultramarine_version := fedora_version
 tau_version := "1"
 
