@@ -27,7 +27,7 @@ packages:
   - dejavu-sans-mono-fonts
   - dejavu-serif-fonts
   - twitter-twemoji-fonts
-  - appimagelauncher # Just for that extra bit of polish
+  # - appimagelauncher # Just for that extra bit of polish
 
 packages-aarch64:
   - xorg-x11-drv-armsoc
