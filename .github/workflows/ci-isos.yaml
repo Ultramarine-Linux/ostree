@@ -2,9 +2,14 @@ name: CI - ISOs
 
 on:
   workflow_dispatch:
-  schedule:
-    # every week at midnight
-    - cron: "0 0 * * *"
+  workflow_run:
+    # Only run the ISO workflow when the OSTree workflow is done, so we can use the latest OSTree :3
+    workflows: ["CI - OSTree"]
+    types:
+      - completed
+  # schedule:
+  #   # every week at midnight
+  #   - cron: "0 0 * * *"
 
 jobs:
   ci:

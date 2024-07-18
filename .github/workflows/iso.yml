@@ -12,9 +12,6 @@ on:
 
 jobs:
   build:
-    # concurrency:
-    #   group: ${{ github.workflow }}-${{ inputs.variant }}
-    #   cancel-in-progress: true
     strategy:
       fail-fast: false
       matrix:
@@ -22,7 +19,7 @@ jobs:
           - x86_64
           - aarch64
       max-parallel: 2
-    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'x86-64-lg' }}
     container:
       image: ghcr.io/terrapkg/builder:f40
       options: --cap-add=SYS_ADMIN --privileged -v /dev:/dev --memory-swap=-1
@@ -45,12 +42,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build ISO
-        uses: nick-fields/retry@v2.9.0
-        with:
-          command: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
-          warning_on_retry: true
-          max_attempts: 3
-          timeout_minutes: 300
+        run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
 
       # - name: Build ISO
       #   run: just isos/build-${{ inputs.product }} ${{ inputs.variant }}
