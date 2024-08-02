@@ -28,8 +28,6 @@ jobs:
           - product: ultramarine
             variant: gnome
           - product: ultramarine
-            variant: pantheon
-          - product: ultramarine
             variant: kde
           - product: tau
             variant: home

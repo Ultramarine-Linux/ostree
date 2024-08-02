@@ -22,7 +22,6 @@ jobs:
           - ultramarine/base
           - ultramarine/flagship
           - ultramarine/gnome
-          - ultramarine/pantheon
           - ultramarine/kde
           - tau/home
     uses: ./.github/workflows/ostree.yml
